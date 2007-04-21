@@ -78,6 +78,7 @@ rule Unpack
 
 rule Download
 {
+    Depends $(<) : $(ARCHIVEDIR) ;
     NotFile $(>) ;
     DownloadFile $(<) : $(>) ;
 }
@@ -299,7 +300,7 @@ Clean clean: $(LOGDIR) ;
 Clean clean: $(BUILDDIR) ;
 Clean clean: $(BUILDROOT) ;
 
-include $(TOP)/ecell.jam ;
+include $(TOP)/ecell3.jam ;
 include $(TOP)/gsl.jam ;
 include $(TOP)/numpy.jam ;
 include $(TOP)/libsbml.jam ;
