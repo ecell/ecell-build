@@ -1,0 +1,50 @@
+diff -ur numpy-1.0.2.orig/numpy/distutils/system_info.py numpy-1.0.2/numpy/distutils/system_info.py
+--- numpy-1.0.2.orig/numpy/distutils/system_info.py	2007-04-20 18:17:18.000000000 +0900
++++ numpy-1.0.2/numpy/distutils/system_info.py	2007-04-20 18:27:05.000000000 +0900
+@@ -987,6 +987,7 @@
+ 
+     def calc_info(self):
+         lib_dirs = self.get_lib_dirs()
++        include_dirs = self.get_include_dirs()
+ 
+         lapack_libs = self.get_libs('lapack_libs', self._lib_names)
+         for d in lib_dirs:
+@@ -996,7 +997,13 @@
+                 break
+         else:
+             return
+-        info['language'] = 'f77'
++        h = (self.combine_paths(lib_dirs+include_dirs,'clapack.h') or [None])[0]
++        if h:
++            h = os.path.dirname(h)
++            dict_append(info,include_dirs=[h])
++            info['language'] = 'c'
++        else:
++            info['language'] = 'f77'  # XXX: is it generally true?
+         self.set_info(**info)
+ 
+ class lapack_src_info(system_info):
+@@ -1326,7 +1333,7 @@
+ 
+     def calc_info(self):
+         lib_dirs = self.get_lib_dirs()
+-
++        include_dirs = self.get_include_dirs()
+         blas_libs = self.get_libs('blas_libs', self._lib_names)
+         for d in lib_dirs:
+             blas = self.check_libs(d,blas_libs,[])
+@@ -1335,7 +1342,13 @@
+                 break
+         else:
+             return
+-        info['language'] = 'f77'  # XXX: is it generally true?
++        h = (self.combine_paths(lib_dirs+include_dirs,'cblas.h') or [None])[0]
++        if h:
++            h = os.path.dirname(h)
++            dict_append(info,include_dirs=[h])
++            info['language'] = 'c'
++        else:
++            info['language'] = 'f77'  # XXX: is it generally true?
+         self.set_info(**info)
+ 
+ 

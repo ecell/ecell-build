@@ -1,0 +1,323 @@
+TOP = $(PWD) ;
+VERSION = 3.1.105 ;
+SubDir TOP build ;
+DESTDIR = $(TOP)/ecell-all-in-one-$(VERSION) ;
+LOGDIR = $(TOP)/log ;
+BUILDDIR = $(TOP)/build ;
+ARCHIVEDIR = $(TOP)/archives ;
+PATCHDIR = $(TOP)/patches ;
+BUILDROOT = $(BUILDDIR)/root ;
+LOCATE = $(BUILDDIR) ;
+MAKE_INSTALL_TARGET = install ;
+PLAIN_MAKE_INSTALL_ACTION = InstallPlainMakePackage ;
+
+NotFile clean ;
+
+rule StampDepends
+{
+    Clean clean : $(<).stamp ;
+    NotFile $(<) ;
+    Depends $(<) : $(<).stamp ;
+    Depends $(<).stamp : $(>) ;
+}
+
+rule SetupBuildTarget
+{
+    StampDepends $(<) : $(>) ;
+    Depends $(<) : $(LOGDIR) $(BUILDDIR) $(BUILDROOT) ;
+}
+
+rule BuildAutoconf
+{
+    SetupBuildTarget $(<) : $(>) ;
+
+    EXTRA_CONFIG_OPTS on $(<) = $(3) ;
+    CleanupAutoconfPackage $(<) : $(>) ;
+    ConfigureAutoconfPackage $(<) : $(>) ;
+    BuildAutoconfPackage $(<) : $(>) ;
+    InstallAutoconfPackage $(<) : $(>) ;
+    Touch $(<) ;
+}
+
+rule BuildPyDistutils
+{
+    SetupBuildTarget $(<) : $(>) ;
+
+    EXTRA_CONFIG_OPTS on ($<) = $(3) ;
+    CleanupPyDistutilsPackage $(<) : $(>) ;
+    ConfigurePyDistutilsPackage $(<) : $(>) ;
+    BuildPyDistutilsPackage $(<) : $(>) ;
+    InstallPyDistutilsPackage $(<) : $(>) ;
+    Touch $(<) ;
+}
+
+rule BuildPlainMake
+{
+    SetupBuildTarget $(<) : $(>) ;
+
+    EXTRA_CONFIG_OPTS on $(<) = $(3) ;
+    CleanupPlainMakePackage $(<) : $(>) ;
+    Configure_$(<) $(<) : $(>) ;
+    BuildPlainMakePackage $(<) : $(>) ;
+    on $(<) $(PLAIN_MAKE_INSTALL_ACTION) $(<) : $(>) ;
+    Touch $(<) ;
+}
+
+rule Unpack
+{
+    Depends $(<) : $(>) ;
+    Depends $(<) : $(BUILDDIR) $(BUILDROOT) ;
+
+    UnpackArchive $(<) : $(>) ;
+    if $(3) {
+        NoCare $(3) ;
+        NotFile $(3) ;
+        PatchPackage $(<) : $(3) ;
+    }
+}
+
+rule Download
+{
+    NotFile $(>) ;
+    DownloadFile $(<) : $(>) ;
+}
+
+actions DownloadFile
+{
+    if which wget > /dev/null; then
+        wget -O "$(<)" "$(>)"
+    elif which curl > /dev/null; then
+        curl -o "$(<)" "$(>)"
+    fi
+}
+
+actions PatchPackage 
+{
+    BUILDROOT=$(BUILDROOT)
+    . ./setenv.sh
+    BASE=$(<:B)$(<:S)
+    chdir $(<)
+    patches=`echo "$(>)" | tr ';' '\n' | xargs -n 1 basename`
+
+    autoreconf=
+    patchlevel=1
+
+    for i in $patches; do
+        file="$(PATCHDIR)/$BASE/$i"
+
+        case $file in
+            *.patch | *.diff)
+                while read param && ! expr "$param" : "====" >/dev/null; do
+                    case $param in
+                        AUTORECONF)
+                            autoreconf=1
+                            ;;
+                        PATCHLEVEL=*)
+                            patchlevel=`echo $param | sed -e 's/^PATCHLEVEL=//'`
+                            ;;
+                    esac
+                done < "$file"
+
+                patch -p$patchlevel < "$file"
+                ;;
+            *.sh)
+                if test -x "$file"; then
+                    while read param && expr "$param" : "#" >/dev/null; do
+                        case $param in
+                            \#AUTORECONF)
+                                autoreconf=1
+                                ;;
+                        esac
+                    done < "$file"
+                    . $file
+                fi
+                ;;
+        esac
+    done
+
+    if test ! -z "$autoreconf"; then
+        if test -x "autogen.sh"; then
+            ./autogen.sh
+        elif test -x "buildconf"; then
+            ./buildconf
+        fi
+    fi
+}
+
+actions UnpackArchive
+{
+    count()
+    {
+        echo $#
+    }
+    DIR=$(<:D)
+    BASE=$(<:B)$(<:S)
+    rm -rf $(<)
+    mkdir -p $DIR/$BASE.tmp
+    chdir $DIR/$BASE.tmp
+
+    case $(>) in
+    *.tar.gz | *.tgz)
+        tar xfz $(>)
+        ;;
+    *.tar.bz2 | *.tbz)
+        tar xfj $(>)
+        ;;
+    *.zip)
+        unzip $(>)
+    esac
+
+    if test -d "$BASE"; then
+        mv $BASE ..
+        chdir ..
+        rmdir $BASE.tmp
+    else
+        if test `count *` = 1; then
+            if test -d *; then
+                mv * ../$BASE
+                chdir ..
+                rmdir $BASE.tmp
+                return
+            fi
+        fi
+
+        chdir ..
+        mv $BASE.tmp $BASE
+    fi
+}
+
+actions Touch
+{
+    touch $(BUILDDIR)/$(<).stamp
+}
+
+actions ignore CleanupAutoconfPackage
+{
+    BUILDROOT=$(BUILDROOT)
+    . ./setenv.sh
+    make -C $(>) distclean >/dev/null 2>&1 
+}
+
+actions ConfigureAutoconfPackage
+{
+    # $(EXTRA_CONFIG_OPTS) ;
+    LOGFILE=$(LOGDIR)/$(<).log
+    BUILDROOT=$(BUILDROOT)
+    . ./setenv.sh
+    {
+        echo ./configure --prefix= $(EXTRA_CONFIG_OPTS)
+        chdir $(>) && ./configure --prefix= $(EXTRA_CONFIG_OPTS) ;
+    } >>$LOGFILE 2>&1
+}
+
+actions BuildAutoconfPackage
+{
+    LOGFILE=$(LOGDIR)/$(<).log
+    BUILDROOT=$(BUILDROOT)
+    . ./setenv.sh
+    make -C $(>) >>$LOGFILE 2>&1
+}
+
+actions InstallAutoconfPackage
+{
+    LOGFILE=$(LOGDIR)/$(<).log
+    BUILDROOT=$(BUILDROOT)
+    . ./setenv.sh
+    make -C $(>) $(MAKE_INSTALL_TARGET) DESTDIR=$(BUILDROOT) >>$LOGFILE 2>&1
+    find $(BUILDROOT) -iname "*.la" | xargs sed -i -e "s#^libdir='/lib'\$#libdir='$(BUILDROOT)/lib'#; s# /lib/# $(BUILDROOT)/lib/#g;"
+    find $(BUILDROOT) -iname "*.pc" | xargs sed -i -e "s#^prefix=\$#prefix=$(BUILDROOT)#"
+    $(AUTOCONF_INSTALL_HOOK);
+}
+
+actions ignore CleanupPyDistutilsPackage
+{
+    BUILDROOT=$(BUILDROOT)
+    . ./setenv.sh
+    chdir $(>)
+    python ./setup.py clean >/dev/null 2>&1
+}
+
+actions ConfigurePyDistutilsPackage
+{
+    LOGFILE=$(LOGDIR)/$(<).log
+    BUILDROOT=$(BUILDROOT)
+    . ./setenv.sh
+    chdir $(>)
+    python ./setup.py config $(EXTRA_CONFIG_OPTS) >>$LOGFILE 2>&1
+}
+
+actions BuildPyDistutilsPackage
+{
+    LOGFILE=$(LOGDIR)/$(<).log
+    BUILDROOT=$(BUILDROOT)
+    . ./setenv.sh
+    chdir $(>)
+    python ./setup.py build >$LOGFILE 2>&1
+}
+
+actions InstallPyDistutilsPackage
+{
+    LOGFILE=$(LOGDIR)/$(<).log
+    BUILDROOT=$(BUILDROOT)
+    . ./setenv.sh
+    chdir $(>)
+    python ./setup.py install --prefix= --root $(BUILDROOT) >>$LOGFILE 2>&1
+}
+
+actions ignore CleanupPlainMakePackage
+{
+    BUILDROOT=$(BUILDROOT)
+    . ./setenv.sh
+    chdir $(>)
+    make clean >/dev/null 2>&1
+}
+
+actions BuildPlainMakePackage
+{
+    LOGFILE=$(LOGDIR)/$(<).log
+    BUILDROOT=$(BUILDROOT)
+    . ./setenv.sh
+    chdir $(>)
+    make >$LOGFILE 2>&1
+}
+
+actions InstallPlainMakePackage
+{
+    LOGFILE=$(LOGDIR)/$(<).log
+    BUILDROOT=$(BUILDROOT)
+    . ./setenv.sh
+    chdir $(>)
+    make $(MAKE_INSTALL_TARGET) DESTDIR=$(BUILDROOT) >>$LOGFILE 2>&1
+}
+
+MkDir $(LOGDIR) ;
+MkDir $(BUILDDIR) ;
+MkDir $(BUILDROOT) ;
+MkDir $(ARCHIVEDIR) ;
+Depends $(BUILDROOT) : $(BUILDDIR) ;
+Clean clean: $(LOGDIR) ;
+Clean clean: $(BUILDDIR) ;
+Clean clean: $(BUILDROOT) ;
+
+include $(TOP)/ecell.jam ;
+include $(TOP)/gsl.jam ;
+include $(TOP)/numpy.jam ;
+include $(TOP)/libsbml.jam ;
+include $(TOP)/freetype.jam ;
+include $(TOP)/fontconfig.jam ;
+include $(TOP)/expat.jam ;
+include $(TOP)/cairo.jam ;
+include $(TOP)/libpng.jam ;
+include $(TOP)/libjpeg.jam ;
+include $(TOP)/libtiff.jam ;
+include $(TOP)/pango.jam ;
+include $(TOP)/atk.jam ;
+include $(TOP)/glib.jam ;
+include $(TOP)/gtk.jam ;
+include $(TOP)/libgnomecanvas.jam ;
+include $(TOP)/libart.jam ;
+include $(TOP)/pycairo.jam ;
+include $(TOP)/pygobject.jam ;
+include $(TOP)/pygtk.jam ;
+include $(TOP)/pygnome.jam ;
+include $(TOP)/clapack.jam ;

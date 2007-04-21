@@ -1,0 +1,5 @@
+BuildAutoconf libpng     : libpng-1.2.16 ;
+Unpack libpng-1.2.16     : $(ARCHIVEDIR)/libpng-1.2.16.tar.bz2 ;
+
+Download $(ARCHIVEDIR)/libpng-1.2.16.tar.bz2 :
+    http://prdownloads.sourceforge.net/libpng/libpng-1.2.16.tar.bz2 ;

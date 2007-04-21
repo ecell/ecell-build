@@ -1,0 +1,7 @@
+Depends libtiff        : libjpeg ;
+
+BuildAutoconf libtiff    : tiff-3.8.2 ;
+Unpack tiff-3.8.2        : $(ARCHIVEDIR)/tiff-3.8.2.tar.gz ;
+
+Download $(ARCHIVEDIR)/tiff-3.8.2.tar.gz :
+    http://dl.maptools.org/dl/libtiff/tiff-3.8.2.tar.gz ;

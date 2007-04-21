@@ -1,0 +1,365 @@
+Index: ecell/model-editor/GraphicalUtils.py
+===================================================================
+--- ecell/model-editor/GraphicalUtils.py	(revision 2641)
++++ ecell/model-editor/GraphicalUtils.py	(working copy)
+@@ -1,9 +1,10 @@
+-
+-
+ from Constants import *
+ import gtk
+-import gnomecanvas
+ import numpy as n
++try:
++    import gnomecanvas
++except:
++    import gnome.canvas as gnomecanvas
+ 
+ class GraphicalUtils:
+ 
+Index: ecell/model-editor/Layout.py
+===================================================================
+--- ecell/model-editor/Layout.py	(revision 2641)
++++ ecell/model-editor/Layout.py	(working copy)
+@@ -8,7 +8,10 @@
+ from TextObject import *
+ from ConnectionObject import *
+ import math
+-import gnomecanvas 
++try:
++    import gnomecanvas 
++except:
++    import gnome.canvas as gnomecanvas
+ 
+ 
+ class Layout:
+Index: ecell/model-editor/PathwayEditor.py
+===================================================================
+--- ecell/model-editor/PathwayEditor.py	(revision 2641)
++++ ecell/model-editor/PathwayEditor.py	(working copy)
+@@ -38,8 +38,11 @@
+ import string
+ from Constants import *
+ from PathwayCanvas import *
+-import gnomecanvas
+ from LayoutCommand import *
++try:
++    import gnomecanvas
++except:
++    import gnome.canvas as gnomecanvas
+ 
+ class PathwayEditor( ListWindow ):
+ 
+Index: ecell/model-editor/ShapeDescriptor.py
+===================================================================
+--- ecell/model-editor/ShapeDescriptor.py	(revision 2641)
++++ ecell/model-editor/ShapeDescriptor.py	(working copy)
+@@ -1,6 +1,9 @@
+ from Constants import *
+ import numpy as nu
+-from gnomecanvas import *
++try:
++    import gnomecanvas
++except:
++    import gnome.canvas as gnomecanvas
+ 
+ def estLabelDims(graphUtils, aLabel):
+     (tx_height, tx_width) = graphUtils.getTextDimensions(aLabel )
+Index: ecell/model-editor/ComplexLine.py
+===================================================================
+--- ecell/model-editor/ComplexLine.py	(revision 2641)
++++ ecell/model-editor/ComplexLine.py	(working copy)
+@@ -1,7 +1,10 @@
+-import gnomecanvas
+ from Constants import *
+ from Utils import *
+ from ResizeableText import *
++try:
++    import gnomecanvas
++except:
++    import gnome.canvas as gnomecanvas
+ 
+ class ComplexLine:
+ 
+Index: ecell/model-editor/ComplexShape.py
+===================================================================
+--- ecell/model-editor/ComplexShape.py	(revision 2641)
++++ ecell/model-editor/ComplexShape.py	(working copy)
+@@ -1,10 +1,13 @@
+-import gnomecanvas
+ from Constants import *
+ from Utils import *
+ from ResizeableText import *
+ import os
+ import gtk
+ import gtk.gdk
++try:
++    import gnomecanvas
++except:
++    import gnome.canvas as gnomecanvas
+ 
+ class ComplexShape:
+ 
+Index: ecell/model-editor/plugin/NucleotideVariableSD.py
+===================================================================
+--- ecell/model-editor/plugin/NucleotideVariableSD.py	(revision 2641)
++++ ecell/model-editor/plugin/NucleotideVariableSD.py	(working copy)
+@@ -1,6 +1,5 @@
+ from Constants import *
+ import numpy as nu
+-from gnomecanvas import *
+ from ShapeDescriptor import *
+ 
+ SHAPE_PLUGIN_TYPE='Variable' #Shape Plugin Constants
+Index: ecell/model-editor/plugin/RibozymeVariableSD.py
+===================================================================
+--- ecell/model-editor/plugin/RibozymeVariableSD.py	(revision 2641)
++++ ecell/model-editor/plugin/RibozymeVariableSD.py	(working copy)
+@@ -1,5 +1,4 @@
+ from Constants import *
+-from gnomecanvas import *
+ from ShapeDescriptor import *
+ import numpy as nu
+ 
+Index: ecell/model-editor/plugin/OtherProcessSD.py
+===================================================================
+--- ecell/model-editor/plugin/OtherProcessSD.py	(revision 2641)
++++ ecell/model-editor/plugin/OtherProcessSD.py	(working copy)
+@@ -1,6 +1,5 @@
+ from Constants import *
+ import numpy as nu
+-from gnomecanvas import *
+ from ShapeDescriptor import *
+ 
+ SHAPE_PLUGIN_TYPE='Process' #Shape Plugin Constants
+Index: ecell/model-editor/plugin/CationVariableSD.py
+===================================================================
+--- ecell/model-editor/plugin/CationVariableSD.py	(revision 2641)
++++ ecell/model-editor/plugin/CationVariableSD.py	(working copy)
+@@ -1,6 +1,5 @@
+ from Constants import *
+ import numpy as nu
+-from gnomecanvas import *
+ from ShapeDescriptor import *
+ 
+ SHAPE_PLUGIN_TYPE='Variable' #Shape Plugin Constants
+Index: ecell/model-editor/plugin/SmallMolVariableSD.py
+===================================================================
+--- ecell/model-editor/plugin/SmallMolVariableSD.py	(revision 2641)
++++ ecell/model-editor/plugin/SmallMolVariableSD.py	(working copy)
+@@ -1,6 +1,5 @@
+ from Constants import *
+ import numpy as nu
+-from gnomecanvas import *
+ from ShapeDescriptor import *
+ 
+ SHAPE_PLUGIN_TYPE='Variable' #Shape Plugin Constants
+Index: ecell/model-editor/plugin/ProteinVariableSD.py
+===================================================================
+--- ecell/model-editor/plugin/ProteinVariableSD.py	(revision 2641)
++++ ecell/model-editor/plugin/ProteinVariableSD.py	(working copy)
+@@ -1,6 +1,5 @@
+ from Constants import *
+ import numpy as nu
+-from gnomecanvas import *
+ from ShapeDescriptor import *
+ 
+ SHAPE_PLUGIN_TYPE='Variable' #Shape Plugin Constants
+Index: ecell/model-editor/plugin/AminoAcidVariableSD.py
+===================================================================
+--- ecell/model-editor/plugin/AminoAcidVariableSD.py	(revision 2641)
++++ ecell/model-editor/plugin/AminoAcidVariableSD.py	(working copy)
+@@ -1,6 +1,5 @@
+ from Constants import *
+ import numpy as nu
+-from gnomecanvas import *
+ from ShapeDescriptor import *
+ 
+ SHAPE_PLUGIN_TYPE='Variable' #Shape Plugin Constants
+Index: ecell/model-editor/plugin/LipidVariableSD.py
+===================================================================
+--- ecell/model-editor/plugin/LipidVariableSD.py	(revision 2641)
++++ ecell/model-editor/plugin/LipidVariableSD.py	(working copy)
+@@ -1,6 +1,5 @@
+ from Constants import *
+ import numpy as nu
+-from gnomecanvas import *
+ from ShapeDescriptor import *
+ 
+ SHAPE_PLUGIN_TYPE='Variable' #Shape Plugin Constants
+Index: ecell/model-editor/plugin/DNAVariableSD.py
+===================================================================
+--- ecell/model-editor/plugin/DNAVariableSD.py	(revision 2641)
++++ ecell/model-editor/plugin/DNAVariableSD.py	(working copy)
+@@ -1,6 +1,5 @@
+ from Constants import *
+ import numpy as nu
+-from gnomecanvas import *
+ from ShapeDescriptor import *
+ 
+ SHAPE_PLUGIN_TYPE='Variable' #Shape Plugin Constants
+Index: ecell/model-editor/plugin/AnionVariableSD.py
+===================================================================
+--- ecell/model-editor/plugin/AnionVariableSD.py	(revision 2641)
++++ ecell/model-editor/plugin/AnionVariableSD.py	(working copy)
+@@ -1,6 +1,5 @@
+ from Constants import *
+ import numpy as nu
+-from gnomecanvas import *
+ from ShapeDescriptor import *
+ 
+ SHAPE_PLUGIN_TYPE='Variable' #Shape Plugin Constants
+Index: ecell/model-editor/plugin/CarbohydrateVariableSD.py
+===================================================================
+--- ecell/model-editor/plugin/CarbohydrateVariableSD.py	(revision 2641)
++++ ecell/model-editor/plugin/CarbohydrateVariableSD.py	(working copy)
+@@ -1,7 +1,6 @@
+ 
+ from Constants import *
+ import numpy as nu
+-from gnomecanvas import *
+ from ShapeDescriptor import *
+ 
+ SHAPE_PLUGIN_TYPE='Variable' #Shape Plugin Constants
+Index: ecell/model-editor/plugin/ProcessSD.py
+===================================================================
+--- ecell/model-editor/plugin/ProcessSD.py	(revision 2641)
++++ ecell/model-editor/plugin/ProcessSD.py	(working copy)
+@@ -1,6 +1,5 @@
+ from Constants import *
+ import numpy as nu
+-from gnomecanvas import *
+ from ShapeDescriptor import *
+ 
+ SHAPE_PLUGIN_TYPE='Process' #Shape Plugin Constants
+Index: ecell/model-editor/plugin/FattyAcidVariableSD.py
+===================================================================
+--- ecell/model-editor/plugin/FattyAcidVariableSD.py	(revision 2641)
++++ ecell/model-editor/plugin/FattyAcidVariableSD.py	(working copy)
+@@ -1,6 +1,5 @@
+ from Constants import *
+ import numpy as nu
+-from gnomecanvas import *
+ from ShapeDescriptor import *
+ 
+ SHAPE_PLUGIN_TYPE='Variable' #Shape Plugin Constants
+Index: ecell/model-editor/plugin/SystemSD.py
+===================================================================
+--- ecell/model-editor/plugin/SystemSD.py	(revision 2641)
++++ ecell/model-editor/plugin/SystemSD.py	(working copy)
+@@ -1,6 +1,5 @@
+ from Constants import *
+ import numpy as nu
+-from gnomecanvas import *
+ from ShapeDescriptor import *
+ 
+ SHAPE_PLUGIN_TYPE='System' #Shape Plugin Constants
+Index: ecell/model-editor/plugin/VariableSD.py
+===================================================================
+--- ecell/model-editor/plugin/VariableSD.py	(revision 2641)
++++ ecell/model-editor/plugin/VariableSD.py	(working copy)
+@@ -1,7 +1,10 @@
+ from Constants import *
+ import numpy as nu
+-from gnomecanvas import *
+ from ShapeDescriptor import *
++try:
++    import gnomecanvas
++except:
++    import gnome.canvas as gnomecanvas
+ 
+ SHAPE_PLUGIN_TYPE='Variable' #Shape Plugin Constants
+ SHAPE_PLUGIN_NAME='Default'
+@@ -30,7 +33,7 @@
+                                 [[1,1,0,-2,0 ], [1,0.5,0,-1,0 ]], [[1,1,0,0,0 ], [1,0.5,0,1,0 ]]\
+                                 ])
+         self.theCodeMap = {\
+-                    'frame' : [ [MOVETO_OPEN, 0], [LINETO, 1], [CURVETO, 2,3,4], [LINETO, 5], [CURVETO, 6, 7, 8] ],
++                    'frame' : [ [ gnomecanvas.MOVETO_OPEN, 0], [ gnomecanvas.LINETO, 1], [gnomecanvas.CURVETO, 2,3,4], [gnomecanvas.LINETO, 5], [ gnomecanvas.CURVETO, 6, 7, 8] ],
+                     'text' : [9],
+                     RING_TOP : [10,11],
+                     RING_BOTTOM : [12,13],
+Index: ecell/model-editor/plugin/RNAVariableSD.py
+===================================================================
+--- ecell/model-editor/plugin/RNAVariableSD.py	(revision 2641)
++++ ecell/model-editor/plugin/RNAVariableSD.py	(working copy)
+@@ -1,5 +1,4 @@
+ from Constants import *
+-from gnomecanvas import *
+ from ShapeDescriptor import *
+ import numpy as nu
+ 
+Index: ecell/model-editor/plugin/IonVariableSD.py
+===================================================================
+--- ecell/model-editor/plugin/IonVariableSD.py	(revision 2641)
++++ ecell/model-editor/plugin/IonVariableSD.py	(working copy)
+@@ -1,6 +1,5 @@
+ from Constants import *
+ import numpy as nu
+-from gnomecanvas import *
+ from ShapeDescriptor import *
+ 
+ SHAPE_PLUGIN_TYPE='Variable' #Shape Plugin Constants
+Index: ecell/model-editor/PathwayCanvas.py
+===================================================================
+--- ecell/model-editor/PathwayCanvas.py	(revision 2641)
++++ ecell/model-editor/PathwayCanvas.py	(working copy)
+@@ -1,8 +1,10 @@
+-from gnomecanvas import *
+ import gtk.gdk
++try:
++    import gnomecanvas
++except:
++    import gnome.canvas as gnomecanvas
+ 
+-
+-class PathwayCanvas( Canvas ):
++class PathwayCanvas( gnomecanvas.Canvas ):
+     
+     def __init__( self, parentWindow, aCanvas):
+         self.theParentWindow = parentWindow
+Index: ecell/model-editor/LineDescriptor.py
+===================================================================
+--- ecell/model-editor/LineDescriptor.py	(revision 2641)
++++ ecell/model-editor/LineDescriptor.py	(working copy)
+@@ -1,7 +1,10 @@
+ from Constants import *
+ from __future__ import division
+ import numpy as nu
+-import gnomecanvas
++try:
++    import gnomecanvas
++except:
++    import gnome.canvas as gnomecanvas
+ 
+ class LineDescriptor:
+ 
+Index: ecell/model-editor/ResizeableText.py
+===================================================================
+--- ecell/model-editor/ResizeableText.py	(revision 2641)
++++ ecell/model-editor/ResizeableText.py	(working copy)
+@@ -1,5 +1,8 @@
+-import gnomecanvas
+ import gtk.gdk
++try:
++    import gnomecanvas
++except:
++    import gnome.canvas as gnomecanvas
+ 
+ class ResizeableText:
+     def __init__( self, aRoot, aCanvas, x ,y , fillColor, text, anchor):
+Index: ecell/model-editor/EditorObject.py
+===================================================================
+--- ecell/model-editor/EditorObject.py	(revision 2641)
++++ ecell/model-editor/EditorObject.py	(working copy)
+@@ -988,7 +988,10 @@
+             pos=self.maxShiftMap[dir][0]
+             return max(0, mshift[pos] )
+ 
+-import gnomecanvas
++try:
++    import gnomecanvas
++except:
++    import gnome.canvas as gnomecanvas
+ class GhostLine:
+     def __init__( self, parentObject, ringCode, endx, endy ):
+         self.parentObject = parentObject

@@ -1,0 +1,10 @@
+Depends cairo          : expat ;
+Depends cairo          : fontconfig ;
+Depends cairo          : freetype ;
+Depends cairo          : libpng ;
+
+BuildAutoconf cairo      : cairo-1.4.4 ;
+Unpack cairo-1.4.4       : $(ARCHIVEDIR)/cairo-1.4.4.tar.gz ;
+
+Download $(ARCHIVEDIR)/cairo-1.4.4.tar.gz :
+    http://cairographics.org/releases/cairo-1.4.4.tar.gz ;

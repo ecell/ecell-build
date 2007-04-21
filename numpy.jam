@@ -1,0 +1,9 @@
+Depends numpy          : clapack ;
+
+BuildPyDistutils numpy   : numpy-1.0.2 ;
+Unpack numpy-1.0.2       : $(ARCHIVEDIR)/numpy-1.0.2.tar.gz
+                         : gen-site-cfg.sh
+                           distutils-target-detection-fix.patch ;
+
+Download $(ARCHIVEDIR)/numpy-1.0.2.tar.gz :
+    http://prdownloads.sf.net/numpy/numpy-1.0.2.tar.gz ;

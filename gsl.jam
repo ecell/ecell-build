@@ -1,0 +1,7 @@
+Depends gsl            : clapack ;
+
+BuildAutoconf gsl        : gsl-1.9 ;
+Unpack gsl-1.9           : $(ARCHIVEDIR)/gsl-1.9.tar.gz ;
+
+Download $(ARCHIVEDIR)/gsl-1.9.tar.gz :
+    http://ftp.gnu.org/gnu/gsl/gsl-1.9.tar.gz ;

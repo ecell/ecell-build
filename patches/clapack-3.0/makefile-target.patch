@@ -1,0 +1,15 @@
+--- CLAPACK.orig/Makefile	2007-04-18 14:57:55.000000000 +0900
++++ CLAPACK/Makefile	2007-04-19 05:27:16.000000000 +0900
+@@ -7,10 +7,10 @@
+ include make.inc
+ 
+ #all: install lib testing blas_testing timing blas_timing
+-all: f2clib install lib testing blas_testing timing blas_timing
++all: f2clib install lib testing blas_testing timing blas_timing
+ 
+ #lib: lapacklib tmglib
+-lib: f2clib lapacklib tmglib
++lib: f2clib lapacklib tmglib blaslib
+ 
+ clean: cleanlib cleantesting cleantiming
+ 

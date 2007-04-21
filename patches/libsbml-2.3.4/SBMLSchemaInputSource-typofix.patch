@@ -1,0 +1,12 @@
+diff -ur libsbml-2.3.4.orig/src/sbml/SBMLSchemaInputSource.h libsbml-2.3.4/src/sbml/SBMLSchemaInputSource.h
+--- libsbml-2.3.4.orig/src/sbml/SBMLSchemaInputSource.h	2007-04-18 03:15:34.000000000 +0900
++++ libsbml-2.3.4/src/sbml/SBMLSchemaInputSource.h	2007-04-18 03:16:03.000000000 +0900
+@@ -76,7 +76,7 @@
+ 
+   ~SBMLSchemaInputSource ();
+ 
+-  BinInputStream* SBMLSchemaInputSource::makeStream () const;
++  BinInputStream* makeStream () const;
+ 
+ 
+ private:

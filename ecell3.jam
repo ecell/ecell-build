@@ -1,0 +1,14 @@
+Depends ecell3         : gsl ;
+Depends ecell3         : libsbml ;
+Depends ecell3         : numpy ;
+Depends ecell3         : pygtk ;
+Depends ecell3         : pygnome ;
+
+BuildAutoconf ecell3   : ecell-3.1.105 ;
+Unpack ecell-3.1.105   : $(ARCHIVEDIR)/ecell-3.1.105.tar.gz
+                       : DESTDIR.patch
+                         configure-syntax-fix.patch
+                         gnomecanvas-compat.patch ;
+
+Download $(ARCHIVEDIR)/ecell-3.1.105.tar.gz :
+    http://prdownloads.sourceforge.net/ecell/ecell-3.1.105.tar.gz ;

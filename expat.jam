@@ -1,0 +1,5 @@
+BuildAutoconf expat      : expat-2.0.0 ;
+Unpack expat-2.0.0       : $(ARCHIVEDIR)/expat-2.0.0.tar.gz ;
+
+Download $(ARCHIVEDIR)/expat-2.0.0.tar.gz :
+    http://prdownloads.sf.net/expat/expat-2.0.0.tar.gz ;

@@ -1,0 +1,29 @@
+actions Configure_clapack
+{
+    cp $(>)/INSTALL/make.inc.LINUX $(>)/make.inc ;
+}
+
+actions Install_clapack
+{
+    install -d $(BUILDROOT)/lib
+    install $(>)/blas_LINUX.a $(BUILDROOT)/lib/libblas.a
+    install $(>)/lapack_LINUX.a $(BUILDROOT)/lib/liblapack.a
+    install $(>)/tmglib_LINUX.a $(BUILDROOT)/lib/libtmglib.a
+    install $(>)/F2CLIBS/libF77.a $(BUILDROOT)/lib/libF77.a
+    install $(>)/F2CLIBS/libI77.a $(BUILDROOT)/lib/libI77.a
+
+    install -d $(BUILDROOT)/include
+    install -d $(BUILDROOT)/include/clapack
+    install $(>)/F2CLIBS/f2c.h $(BUILDROOT)/include/clapack/f2c.h
+    install $(>)/clapack.h $(BUILDROOT)/include/clapack/clapack.h
+    install $(>)/BLAS/WRAP/blaswrap.h $(BUILDROOT)/include/clapack/blaswrap.h
+    install $(>)/BLAS/WRAP/fblaswr.h $(BUILDROOT)/include/clapack/fblaswr.h
+    install $(>)/BLAS/WRAP/cblas.h $(BUILDROOT)/include/clapack/cblas.h
+}
+PLAIN_MAKE_INSTALL_ACTION on clapack = Install_clapack ;
+BuildPlainMake clapack   : clapack-3.0 ;
+Unpack clapack-3.0       : $(ARCHIVEDIR)/clapack.tgz
+                         : makefile-target.patch ;
+
+Download $(ARCHIVEDIR)/clapack.tgz :
+    http://www.netlib.org/clapack/clapack.tgz ;
