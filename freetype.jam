@@ -2,4 +2,4 @@ BuildAutoconf freetype   : freetype-2.3.4 ;
 Unpack freetype-2.3.4    : $(ARCHIVEDIR)/freetype-2.3.4.tar.bz2 ;
 
 Download $(ARCHIVEDIR)/freetype-2.3.4.tar.bz2 :
-    http://download.savannah.gnu.org/releases/freetype/freetype-doc-2.3.4.tar.bz2 ;
+    http://download.savannah.gnu.org/releases/freetype/freetype-2.3.4.tar.bz2 ;
