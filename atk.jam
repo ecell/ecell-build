@@ -1,3 +1,4 @@
+Depends atk : glib ;
 BuildAutoconf atk        : atk-1.18.0 ;
 Unpack atk-1.18.0        : $(ARCHIVEDIR)/atk-1.18.0.tar.bz2 ;
 
