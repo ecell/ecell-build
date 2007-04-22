@@ -225,8 +225,9 @@ actions InstallAutoconfPackage
     BUILDROOT=$(BUILDROOT)
     . ./setenv.sh
     make -C $(>) $(MAKE_INSTALL_TARGET) DESTDIR=$(BUILDROOT) >>$LOGFILE 2>&1
-    find $(BUILDROOT) -iname "*.la" | xargs -r sed -i -e "s#^libdir='/lib'\$#libdir='$(BUILDROOT)/lib'#; s# /lib/# $(BUILDROOT)/lib/#g;"
-    find $(BUILDROOT) -iname "*.pc" | xargs -r sed -i -e "s#^prefix=\$#prefix=$(BUILDROOT)#"
+    find $(BUILDROOT)/lib -iname "*.la" | xargs -r sed -i -e "s#^libdir='/lib'\$#libdir='$(BUILDROOT)/lib'#; s# /lib/# $(BUILDROOT)/lib/#g;"
+    find $(BUILDROOT)/lib -iname "*.pc" | xargs -r sed -i -e "s#^prefix=\$#prefix=$(BUILDROOT)#"
+    find $(BUILDROOT)/bin -iname "*-config" | xargs -r sed -i -e "s#^prefix=\$#prefix=$(BUILDROOT)#"
     $(AUTOCONF_INSTALL_HOOK);
 }
 
