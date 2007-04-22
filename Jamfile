@@ -80,10 +80,10 @@ rule Download
 {
     Depends $(<) : $(ARCHIVEDIR) ;
     NotFile $(>) ;
-    DownloadFile $(<) : $(>) ;
+    DownloadArchive $(<) : $(>) ;
 }
 
-actions DownloadFile
+actions DownloadArchive
 {
     if which wget > /dev/null; then
         wget -O "$(<)" "$(>)"
@@ -225,8 +225,8 @@ actions InstallAutoconfPackage
     BUILDROOT=$(BUILDROOT)
     . ./setenv.sh
     make -C $(>) $(MAKE_INSTALL_TARGET) DESTDIR=$(BUILDROOT) >>$LOGFILE 2>&1
-    find $(BUILDROOT) -iname "*.la" | xargs sed -i -e "s#^libdir='/lib'\$#libdir='$(BUILDROOT)/lib'#; s# /lib/# $(BUILDROOT)/lib/#g;"
-    find $(BUILDROOT) -iname "*.pc" | xargs sed -i -e "s#^prefix=\$#prefix=$(BUILDROOT)#"
+    find $(BUILDROOT) -iname "*.la" | xargs -r sed -i -e "s#^libdir='/lib'\$#libdir='$(BUILDROOT)/lib'#; s# /lib/# $(BUILDROOT)/lib/#g;"
+    find $(BUILDROOT) -iname "*.pc" | xargs -r sed -i -e "s#^prefix=\$#prefix=$(BUILDROOT)#"
     $(AUTOCONF_INSTALL_HOOK);
 }
 
