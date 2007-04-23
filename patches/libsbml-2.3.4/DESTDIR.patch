@@ -1,0 +1,21 @@
+diff -ur libsbml-2.3.4.orig/src/bindings/python/Makefile.in libsbml-2.3.4/src/bindings/python/Makefile.in
+--- libsbml-2.3.4.orig/src/bindings/python/Makefile.in	2005-10-04 00:36:53.000000000 +0900
++++ libsbml-2.3.4/src/bindings/python/Makefile.in	2007-04-23 21:08:21.000000000 +0900
+@@ -275,7 +275,7 @@
+ # -----------------------------------------------------------------------------
+ 
+ install: setup.py create-build-dir
+-	$(PYTHON) setup.py install --skip-build --prefix=$(prefix)
++	$(PYTHON) setup.py install --skip-build --prefix=$(prefix) --root $(DESTDIR)
+ 
+ installcheck:
+ 
+@@ -286,7 +286,7 @@
+ 	cp libsbml.py    build/libsbml
+ 
+ uninstall: setup.py
+-	$(PYTHON) setup.py uninstall --prefix=$(prefix)
++	$(PYTHON) setup.py uninstall --prefix=$(prefix) --root $(DESTDIR)
+ 
+ 
+ # -----------------------------------------------------------------------------
