@@ -1,4 +1,5 @@
 BuildAutoconf expat      : expat-2.0.0 ;
+License expat            : expat-2.0.0/COPYING ;
 Unpack expat-2.0.0       : $(ARCHIVEDIR)/expat-2.0.0.tar.gz ;
 
 Download $(ARCHIVEDIR)/expat-2.0.0.tar.gz :

@@ -1,4 +1,5 @@
 BuildAutoconf freetype   : freetype-2.3.4 ;
+License freetype         : freetype-2.3.4/docs/FTL.TXT ;
 Unpack freetype-2.3.4    : $(ARCHIVEDIR)/freetype-2.3.4.tar.bz2 ;
 
 Download $(ARCHIVEDIR)/freetype-2.3.4.tar.bz2 :

@@ -1,6 +1,7 @@
 Depends libtiff        : libjpeg ;
 
 BuildAutoconf libtiff    : tiff-3.8.2 ;
+License libtiff          : tiff-3.8.2/COPYRIGHT ;
 Unpack tiff-3.8.2        : $(ARCHIVEDIR)/tiff-3.8.2.tar.gz ;
 
 Download $(ARCHIVEDIR)/tiff-3.8.2.tar.gz :

@@ -1,6 +1,7 @@
 Depends pygobject      : glib ;
 
 BuildAutoconf pygobject  : pygobject-2.12.3 ;
+License pygobject        : pygobject-2.12.3/COPYING ;
 Unpack pygobject-2.12.3  : $(ARCHIVEDIR)/pygobject-2.12.3.tar.bz2 ;
 
 Download $(ARCHIVEDIR)/pygobject-2.12.3.tar.bz2 :

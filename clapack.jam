@@ -22,8 +22,11 @@ actions Install_clapack
 }
 PLAIN_MAKE_INSTALL_ACTION on clapack = Install_clapack ;
 BuildPlainMake clapack   : clapack-3.0 ;
+License clapack          : $(ARCHIVEDIR)/LICENSE.clapack ;
 Unpack clapack-3.0       : $(ARCHIVEDIR)/clapack.tgz
                          : makefile-target.patch ;
 
+Download $(ARCHIVEDIR)/LICENSE.clapack :
+    http://www.netlib.org/lapack/COPYING ;
 Download $(ARCHIVEDIR)/clapack.tgz :
     http://www.netlib.org/clapack/clapack.tgz ;

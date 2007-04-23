@@ -2,6 +2,7 @@ Depends pygnome        : pygtk ;
 Depends pygnome        : libgnomecanvas ;
 
 BuildAutoconf pygnome      : gnome-python-2.18.2 ;
+License pygnome            : gnome-python-2.18.2/COPYING ;
 Unpack gnome-python-2.18.2 : $(ARCHIVEDIR)/gnome-python-2.18.2.tar.bz2 ;
 
 Download $(ARCHIVEDIR)/gnome-python-2.18.2.tar.bz2 :

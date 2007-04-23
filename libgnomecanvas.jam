@@ -2,6 +2,7 @@ Depends libgnomecanvas : gtk ;
 Depends libgnomecanvas : libart ;
 
 BuildAutoconf libgnomecanvas : libgnomecanvas-2.14.0 ;
+License libgnomecanvas       : libgnomecanvas-2.14.0/COPYING.LIB ;
 Unpack libgnomecanvas-2.14.0 : $(ARCHIVEDIR)/libgnomecanvas-2.14.0.tar.bz2 ;
 
 Download $(ARCHIVEDIR)/libgnomecanvas-2.14.0.tar.bz2 :

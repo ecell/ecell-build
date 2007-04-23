@@ -10,6 +10,7 @@ BuildAutoconf gtk        : gtk+-2.10.11
                          : --disable-gtk-doc
                            --disable-modules
                            --with-included-loaders=ani,png,jpeg,tiff ;
+License gtk              : gtk+-2.10.11/COPYING ;
 Unpack gtk+-2.10.11      : $(ARCHIVEDIR)/gtk+-2.10.11.tar.bz2 ;
 
 Download $(ARCHIVEDIR)/gtk+-2.10.11.tar.bz2 :

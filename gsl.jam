@@ -1,6 +1,7 @@
 Depends gsl            : clapack ;
 
 BuildAutoconf gsl        : gsl-1.9 ;
+License gsl              : gsl-1.9/COPYING ;
 Unpack gsl-1.9           : $(ARCHIVEDIR)/gsl-1.9.tar.gz ;
 
 Download $(ARCHIVEDIR)/gsl-1.9.tar.gz :

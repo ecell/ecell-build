@@ -5,6 +5,7 @@ Depends pango          : glib ;
 BuildAutoconf pango      : pango-1.16.2
                          : --with-included-modules=yes
                            --with-dynamic-modules=no ;
+License pango            : pango-1.16.2/COPYING ;
 Unpack pango-1.16.2      : $(ARCHIVEDIR)/pango-1.16.2.tar.bz2 ;
 
 Download $(ARCHIVEDIR)/pango-1.16.2.tar.bz2 :

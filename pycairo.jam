@@ -1,5 +1,6 @@
 Depends pycairo        : cairo ;
 BuildAutoconf pycairo    : pycairo-1.4.0 ;
+License pycairo          : pycairo-1.4.0/COPYING ;
 Unpack pycairo-1.4.0     : $(ARCHIVEDIR)/pycairo-1.4.0.tar.gz ;
 
 Download $(ARCHIVEDIR)/pycairo-1.4.0.tar.gz :

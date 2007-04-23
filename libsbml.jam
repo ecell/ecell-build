@@ -3,8 +3,10 @@ Depends libsbml        : expat ;
 BuildAutoconf libsbml    : libsbml-2.3.4
                          : --with-python
                            --with-expat=$(BUILDROOT)/lib ;
+License libsbml          : libsbml-2.3.4/COPYING.txt ;
 Unpack libsbml-2.3.4     : $(ARCHIVEDIR)/libsbml-2.3.4.zip
-                         : SBMLSchemaInputSource-typofix.patch ;
+                         : SBMLSchemaInputSource-typofix.patch
+                           DESTDIR.patch ;
 
 Download $(ARCHIVEDIR)/libsbml-2.3.4.zip :
     http://downloads.sourceforge.net/sbml/libsbml-2.3.4.zip ;

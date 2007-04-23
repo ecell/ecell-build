@@ -2,6 +2,7 @@ Depends fontconfig     : expat ;
 Depends fontconfig     : freetype ;
 
 BuildAutoconf fontconfig : fontconfig-2.4.2 ;
+License fontconfig       : fontconfig-2.4.2/COPYING ;
 Unpack fontconfig-2.4.2  : $(ARCHIVEDIR)/fontconfig-2.4.2.tar.gz ;
 
 Download $(ARCHIVEDIR)/fontconfig-2.4.2.tar.gz :

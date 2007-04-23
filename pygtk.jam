@@ -4,6 +4,7 @@ Depends pygtk          : pygobject ;
 
 AUTOCONF_INSTALL_HOOK on pygtk = "sed -i -e \"s#^prefix=\\\$#prefix=$BUILDROOT#\" $BUILDROOT/bin/pygtk-codegen-2.0" ;
 BuildAutoconf pygtk      : pygtk-2.10.4 ;
+License pygtk            : pygtk-2.10.4/COPYING ;
 Unpack pygtk-2.10.4      : $(ARCHIVEDIR)/pygtk-2.10.4.tar.bz2 ;
 
 Download $(ARCHIVEDIR)/pygtk-2.10.4.tar.bz2 :

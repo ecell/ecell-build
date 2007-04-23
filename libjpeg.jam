@@ -1,6 +1,7 @@
 MAKE_INSTALL_TARGET on libjpeg = install-lib ;
 BuildAutoconf libjpeg    : jpeg-6b
                          : --enable-shared ;
+License libjpeg          : jpeg-6b/README ;
 Unpack jpeg-6b           : $(ARCHIVEDIR)/jpegsrc.v6b.tar.gz
                          : DESTDIR.patch ;
 

@@ -1,4 +1,5 @@
 BuildAutoconf libart     : libart-2.3.19 ;
+License libart           : libart-2.3.19/COPYING ;
 Unpack libart-2.3.19     : $(ARCHIVEDIR)/libart_lgpl-2.3.19.tar.bz2 ;
 
 Download $(ARCHIVEDIR)/libart_lgpl-2.3.19.tar.bz2 :

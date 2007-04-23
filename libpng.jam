@@ -1,4 +1,5 @@
 BuildAutoconf libpng     : libpng-1.2.16 ;
+License libpng           : libpng-1.2.16/LICENSE ;
 Unpack libpng-1.2.16     : $(ARCHIVEDIR)/libpng-1.2.16.tar.bz2 ;
 
 Download $(ARCHIVEDIR)/libpng-1.2.16.tar.bz2 :

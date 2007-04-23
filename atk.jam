@@ -1,5 +1,6 @@
 Depends atk : glib ;
 BuildAutoconf atk        : atk-1.18.0 ;
+License atk              : atk-1.18.0/COPYING ;
 Unpack atk-1.18.0        : $(ARCHIVEDIR)/atk-1.18.0.tar.bz2 ;
 
 Download $(ARCHIVEDIR)/atk-1.18.0.tar.bz2 :
