@@ -1,0 +1,7 @@
+BuildAutoconf boost      : boost-1.33.1 
+                         : --prefix=$(BUILDROOT) ;
+License boost            : boost-1.33.1/LICENSE_1_0.txt ;
+Unpack boost-1.33.1      : $(ARCHIVEDIR)/boost_1_33_1.tar.bz2 ;
+
+Download $(ARCHIVEDIR)/boost_1_33_1.tar.bz2 :
+    http://prdownloads.sf.net/boost/boost_1_33_1.tar.bz2 ;

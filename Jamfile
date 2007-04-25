@@ -1,5 +1,7 @@
 TOP = $(PWD) ;
+PKG_NAME = ecell3-bin ;
 VERSION = 3.1.105 ;
+ARCHIVE_NAME = $(PKG_NAME)-$(VERSION) ;
 SubDir TOP build ;
 DESTDIR = $(TOP)/ecell-all-in-one-$(VERSION) ;
 LOGDIR = $(TOP)/log ;
@@ -7,6 +9,7 @@ BUILDDIR = $(TOP)/build ;
 ARCHIVEDIR = $(TOP)/archives ;
 PATCHDIR = $(TOP)/patches ;
 BUILDROOT = $(BUILDDIR)/root ;
+DISTROOT = $(BUILDDIR)/dist ;
 LOCATE = $(BUILDDIR) ;
 MAKE_INSTALL_TARGET = install ;
 PLAIN_MAKE_INSTALL_ACTION = InstallPlainMakePackage ;
@@ -310,6 +313,73 @@ actions InstallPlainMakePackage
     make $(MAKE_INSTALL_TARGET) DESTDIR=$(BUILDROOT) >>$LOGFILE 2>&1
 }
 
+rule MakeBinaryDist
+{
+    Clean clean: $(<) ;
+    Clean clean: $(DISTROOT) ;
+    NotFile $(<) ;
+    NotFile $(>) ;
+    Depends $(<) : $(TOP)/$(<).tar.gz ;
+    local DIST_DESTDIR = $(DISTROOT)/$(<) ;
+    Depends $(DIST_DESTDIR) : $(>) ;
+    MkDir $(DIST_DESTDIR) ;
+    RBulk $(DIST_DESTDIR) : $(>) ;
+    StripBuildPath $(DIST_DESTDIR) ;
+    MakeArchive $(TOP)/$(<).tar.gz : $(DIST_DESTDIR) ;
+}
+
+rule RBulk
+{
+    NotFile $(>) ;
+    Depends $(<) : $(>) ;
+    DoRBulk $(<) : $(>) ;
+}
+
+actions DoRBulk
+{
+    TARGET=$(<)
+    BUILDROOT=$(BUILDROOT)
+    FILES=`echo $(BUILDROOT)/$(>) | tr ';' '\n'`
+    for file in `echo $FILES | sed -e "s#$BUILDROOT/##g"`; do
+        destdir=`dirname $TARGET/$file`
+        [ ! -e "$destdir" ] && mkdir -p "$destdir"
+        cp -R "$BUILDROOT/$file" $destdir
+    done
+}
+
+actions StripBuildPath
+{
+    test -d $(<)/lib && find $(<)/lib -iname "*.la" | \
+        xargs -r \
+            sed -i -e "s#^libdir='$(BUILDROOT)/lib'\$#libdir='/lib'#; s# $(BUILDROOT)/lib/# /lib/#g;"
+    test -d $(<)/lib && find $(<)/lib -iname "*.pc" | \
+        xargs -r \
+            sed -i -e "s#^prefix=$(BUILDROOT)\$#prefix=#"
+    test -d $(<)/bin && find $(<)/bin -iname "*-config" | \
+        xargs -r \
+        sed -i -e "s#^prefix=$(BUILDROOT)\$#prefix=#"
+}
+
+rule MakeArchive
+{
+    Depends $(<) : $(>) ;
+    DoMakeArchive $(<) : $(>) ;
+}
+
+actions DoMakeArchive
+{
+    case $(<) in
+        *.tar.gz)
+            cd $(>:D)
+            tar cfvz $(<) $(>:B)$(>:S)
+            ;;
+        *.tar.bz2)
+            cd $(>:D)
+            tar cfvj $(<) $(>:B)$(>:S)
+            ;;
+    esac
+}
+
 MkDir $(LOGDIR) ;
 MkDir $(BUILDDIR) ;
 MkDir $(BUILDROOT) ;
@@ -341,3 +411,38 @@ include $(TOP)/pygobject.jam ;
 include $(TOP)/pygtk.jam ;
 include $(TOP)/pygnome.jam ;
 include $(TOP)/clapack.jam ;
+include $(TOP)/boost.jam ;
+
+MakeBinaryDist $(ARCHIVE_NAME) :
+    LICENSE*
+    bin/*ecell*
+    bin/dmcompile
+    bin/f2py
+    bin/fc-*
+    bin/gsl-*
+    include/gsl
+    include/dmtool
+    include/clapack
+    include/ecell*
+    lib/python2.4
+    lib/ecell-3.1
+    lib/pygtk
+    lib/gtk-2.0
+    lib/pango
+    lib/pkgconfig/gsl.pc
+    lib/libF77.a
+    lib/libI77.a
+    lib/libblas.a
+    lib/liblapack.a
+    lib/libtmglib.a
+    lib/libgsl.la
+    lib/*.so*
+    share/doc/ecell*
+    share/locale
+    share/ecell-3.1
+    share/themes
+    ;
+
+Depends all : $(ARCHIVE_NAME) ;
+Depends $(ARCHIVE_NAME) : ecell3 ;
+

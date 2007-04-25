@@ -1,0 +1,18 @@
+diff -ur ecell-3.1.105.orig/ecell/pyecs/ecell3-python.in ecell-3.1.105/ecell/pyecs/ecell3-python.in
+--- ecell-3.1.105.orig/ecell/pyecs/ecell3-python.in	2007-04-25 18:17:07.000000000 +0900
++++ ecell-3.1.105/ecell/pyecs/ecell3-python.in	2007-04-25 18:17:51.000000000 +0900
+@@ -1,4 +1,4 @@
+-#!@SHELL@
++#!/bin/sh
+ 
+ 
+ PACKAGE=@PACKAGE@
+@@ -9,7 +9,7 @@
+ 
+ BASENAME=`basename $0`
+ 
+-prefix=@prefix@
++prefix=`readlink -f \`dirname $0\`/..`
+ exec_prefix=@exec_prefix@
+ libdir=@libdir@
+ pythondir=@pythondir@
