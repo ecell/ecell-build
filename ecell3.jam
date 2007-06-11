@@ -5,13 +5,15 @@ Depends ecell3         : pygtk ;
 Depends ecell3         : pygnome ;
 Depends ecell3         : boost ;
 
-BuildAutoconf ecell3   : ecell-3.1.105 ;
+BuildAutoconf ecell3   : ecell-3.1.105 
+                       : --with-numpy-includes=$(BUILDROOT)/lib/python2.4/site-packages/numpy/core/include ;
 License ecell3         : ecell-3.1.105/COPYING ;
 Unpack ecell-3.1.105   : $(ARCHIVEDIR)/ecell-3.1.105.tar.gz
                        : DESTDIR.patch
                          configure-syntax-fix.patch
                          gnomecanvas-compat.patch
-                         relative-prefix.patch ;
+                         relative-prefix.patch
+                         numpy-includes.patch ;
 
 Download $(ARCHIVEDIR)/ecell-3.1.105.tar.gz :
     http://prdownloads.sourceforge.net/ecell/ecell-3.1.105.tar.gz ;

@@ -1,5 +1,7 @@
-diff -ur ecell-3.1.105.orig/ecell/pyecs/ecell3-python.in ecell-3.1.105/ecell/pyecs/ecell3-python.in
---- ecell-3.1.105.orig/ecell/pyecs/ecell3-python.in	2007-04-25 18:17:07.000000000 +0900
+PATCHLEVEL=1
+=============================================================================
+diff -ur ecell-3.1.105/ecell/pyecs/ecell3-python.in ecell-3.1.105/ecell/pyecs/ecell3-python.in
+--- ecell-3.1.105/ecell/pyecs/ecell3-python.in	2007-04-25 18:17:07.000000000 +0900
 +++ ecell-3.1.105/ecell/pyecs/ecell3-python.in	2007-04-25 18:17:51.000000000 +0900
 @@ -1,4 +1,4 @@
 -#!@SHELL@
