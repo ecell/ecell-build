@@ -18,7 +18,7 @@ Description: E-Cell System is an object-oriented software suite for modeling,
 Package: ecell3-model-editor
 Architecture: any
 Section: contrib/science
-Depends: ${shlibs:Depends}, ${misc:Depends}
+Depends: ecell3, ${shlibs:Depends}, ${misc:Depends}
 Description: E-Cell System is an object-oriented software suite for modeling,
  simulation, and analysis of large scale complex systems, particularly focused
  on biological details of cellular behavior.
@@ -26,7 +26,7 @@ Description: E-Cell System is an object-oriented software suite for modeling,
 Package: ecell3-session-monitor
 Architecture: any
 Section: contrib/science
-Depends: ${shlibs:Depends}, ${misc:Depends}
+Depends: ecell3, ${shlibs:Depends}, ${misc:Depends}
 Description: E-Cell System is an object-oriented software suite for modeling,
  simulation, and analysis of large scale complex systems, particularly focused
  on biological details of cellular behavior.
@@ -34,7 +34,7 @@ Description: E-Cell System is an object-oriented software suite for modeling,
 Package: ecell3-tool-launcher
 Architecture: any
 Section: contrib/science
-Depends: ${shlibs:Depends}, ${misc:Depends}
+Depends: ecell3, ${shlibs:Depends}, ${misc:Depends}
 Description: E-Cell System is an object-oriented software suite for modeling,
  simulation, and analysis of large scale complex systems, particularly focused
  on biological details of cellular behavior.
@@ -42,6 +42,7 @@ Description: E-Cell System is an object-oriented software suite for modeling,
 Package: ecell3-dev
 Architecture: any
 Section: contrib/devel
+Depends: ecell3, ${shlibs:Depends}, ${misc:Depends}
 Description: E-Cell System is an object-oriented software suite for modeling,
  simulation, and analysis of large scale complex systems, particularly focused
  on biological details of cellular behavior.
