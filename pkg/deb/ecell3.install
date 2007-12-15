@@ -1,4 +1,13 @@
-debian/tmp/usr/bin
+debian/tmp/usr/bin/dmcompile
+debian/tmp/usr/bin/ecell3-dmc
+debian/tmp/usr/bin/ecell3-em2eml
+debian/tmp/usr/bin/ecell3-eml2em
+debian/tmp/usr/bin/ecell3-eml2sbml
+debian/tmp/usr/bin/ecell3-python
+debian/tmp/usr/bin/ecell3-sbml2eml
+debian/tmp/usr/bin/ecell3-session
+debian/tmp/usr/bin/ecell3-session-gui
+debian/tmp/usr/bin/ecell3-session-manager
 debian/tmp/usr/lib/libecs.*
 debian/tmp/usr/lib/libemc.*
 debian/tmp/usr/lib/ecell-3.1/dms
