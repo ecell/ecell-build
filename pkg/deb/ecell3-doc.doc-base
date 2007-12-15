@@ -1,0 +1,11 @@
+Document: ecell3-users-manual
+Title: Users manual of E-Cell System version 3
+Author: Koichi Takahashi <ktakahashi@molsci.org>
+Abstract: Users manual of E-Cell System version 3
+Section: unknown
+
+Format: HTML
+Index: /usr/share/doc/ecell/users-manual/index.html
+Files: /usr/share/doc/ecell/users-manual/*.html
+
+  
