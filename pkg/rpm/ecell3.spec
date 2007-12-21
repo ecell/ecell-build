@@ -18,6 +18,7 @@ Requires: glibc
 BuildRequires: make
 BuildRequires: python-numeric
 BuildRequires: python-devel
+BuildRequires: pygtk2 >= 2.6
 BuildRequires: glibc-devel
 BuildRequires: libstdc++-devel
 BuildRequires: gcc-c++
@@ -176,6 +177,9 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_libdir}/ecell-3.1/toollauncher
 
 %changelog
+* Fri Dec 21 2007 Moriyoshi Koizumi <mozo@sfc.keio.ac.jp>
+- Add pygtk2 to building requirements.
+
 * Fri Dec 21 2007 Moriyoshi Koizumi <mozo@sfc.keio.ac.jp>
 - Reorganize package system for E-Cell 3.1.106 release.
 
