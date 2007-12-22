@@ -16,7 +16,6 @@ Requires: libstdc++
 Requires: python >= 2.3
 Requires: glibc
 BuildRequires: make
-BuildRequires: python-numeric
 BuildRequires: python-devel
 BuildRequires: pygtk2 >= 2.6
 BuildRequires: glibc-devel
@@ -38,7 +37,7 @@ on biological details of cellular behavior.
 Summary: Developer package for E-Cell System.
 Group: Development/Libraries
 Requires: ecell3 = %{version}
-Requires: python-numeric
+Requires: numpy >= 1.0.3
 Requires: gsl-devel
 Requires: boost-devel >= 1.33.0
 Requires: libstdc++-devel
