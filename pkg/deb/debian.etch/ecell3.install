@@ -9,4 +9,4 @@ debian/tmp/usr/lib/libecs.so.*
 debian/tmp/usr/lib/libemc.so.*
 debian/tmp/usr/lib/ecell-3.1/dms
 debian/tmp/usr/share/doc/ecell3/samples
-debian/tmp/usr/lib/python2.5
+debian/tmp/usr/lib/python2.4
