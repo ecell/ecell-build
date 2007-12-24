@@ -10,19 +10,19 @@ Packager: Takeshi Sakurada
 BuildRoot: %{_tmppath}/%{name}-root
 
 Requires: numpy >= 1.0.3
-Requires: gsl >= 1.8
-Requires: boost >= 1.33.0
+Requires: gsl >= 1.5
+Requires: boost >= 1.32.0
 Requires: libstdc++
 Requires: python >= 2.3
 Requires: glibc
 BuildRequires: make
 BuildRequires: python-devel
-BuildRequires: pygtk2 >= 2.6
+BuildRequires: pygtk2 >= 2.4
 BuildRequires: glibc-devel
 BuildRequires: libstdc++-devel
 BuildRequires: gcc-c++
-BuildRequires: gsl-devel >= 1.8
-BuildRequires: boost-devel >= 1.33.0
+BuildRequires: gsl-devel >= 1.5
+BuildRequires: boost-devel >= 1.32.0
 BuildRequires: libstdc++-devel
 BuildRequires: doxygen
 BuildRequires: docbook-utils
@@ -39,7 +39,7 @@ Group: Development/Libraries
 Requires: ecell3 = %{version}
 Requires: numpy >= 1.0.3
 Requires: gsl-devel
-Requires: boost-devel >= 1.33.0
+Requires: boost-devel >= 1.32.0
 Requires: libstdc++-devel
 
 %description devel
@@ -52,8 +52,8 @@ Summary: E-Cell Session Monitor
 Group: Development/Libraries
 Requires: ecell3 = %{version}
 Requires: python >= 2.3
-Requires: pygtk2 >= 2.6
-Requires: gnome-python2-canvas >= 2.6
+Requires: pygtk2 >= 2.4
+Requires: gnome-python2-canvas >= 2.4
 
 %description session-monitor
 E-Cell System is an object-oriented software suite for modeling,
@@ -65,8 +65,8 @@ Summary: E-Cell Model Editor
 Group: Development/Libraries
 Requires: ecell3 = %{version}
 Requires: python >= 2.3
-Requires: pygtk2 >= 2.6
-Requires: gnome-python2-canvas >= 2.6
+Requires: pygtk2 >= 2.4
+Requires: gnome-python2-canvas >= 2.4
 
 %description model-editor
 E-Cell System is an object-oriented software suite for modeling,
@@ -78,8 +78,8 @@ Summary: E-Cell Tool Launcher
 Group: Development/Libraries
 Requires: ecell3 = %{version}
 Requires: python >= 2.3
-Requires: pygtk2 >= 2.6
-Requires: gnome-python2-canvas >= 2.6
+Requires: pygtk2 >= 2.4
+Requires: gnome-python2-canvas >= 2.4
 
 %description tool-launcher
 E-Cell System is an object-oriented software suite for modeling,
@@ -140,7 +140,7 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_libdir}/libecs.so.*
 %{_libdir}/libemc.so.*
 %{_libdir}/ecell-3.1/dms
-%{_libdir}/python2.5
+%{_libdir}/python*
 
 %files devel
 %defattr(-,root,root)
