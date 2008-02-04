@@ -48,8 +48,8 @@ Description: E-Cell System is an object-oriented software suite for modeling,
 Package: ecell3-dev
 Architecture: any
 Section: contrib/devel
-Depends: ecell3, ${shlibs:Depends}, ${misc:Depends},
-    libboost-dev (>= 1.33.0), libgsl0-dev (>=1.8)
+Depends: ecell3, ${shlibs:Depends}, ${misc:Depends}, g++,
+    libboost-dev (>= 1.33.0), libboost-python-dev, libgsl0-dev (>=1.8)
 Description: E-Cell System is an object-oriented software suite for modeling,
  simulation, and analysis of large scale complex systems, particularly focused
  on biological details of cellular behavior.
