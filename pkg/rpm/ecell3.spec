@@ -159,7 +159,6 @@ rm -rf ${RPM_BUILD_ROOT}
 %defattr(-,root,root)
 %doc AUTHORS COPYING README
 %{_bindir}/gecell
-%{_bindir}/ecell3-session-gui
 %{_bindir}/ecell3-session-monitor
 %{_libdir}/ecell-3.1/session-monitor
 
