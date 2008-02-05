@@ -64,8 +64,10 @@ on biological details of cellular behavior.
 Summary: E-Cell Model Editor
 Group: Development/Libraries
 Requires: ecell3 = %{version}
+Requires: ecell3-session-monitor = %{version}
 Requires: python >= 2.3
 Requires: pygtk2 >= 2.4
+Requires: pygtk2-libglade >= 2.4
 Requires: gnome-python2-canvas >= 2.4
 
 %description model-editor
