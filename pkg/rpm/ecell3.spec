@@ -53,7 +53,7 @@ Group: Development/Libraries
 Requires: ecell3 = %{version}
 Requires: python >= 2.3
 Requires: pygtk2 >= 2.4
-Requires: gnome-python2-canvas >= 2.4
+Requires: pygtk2-libglade >= 2.4
 
 %description session-monitor
 E-Cell System is an object-oriented software suite for modeling,
@@ -177,6 +177,11 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_libdir}/ecell-3.1/toollauncher
 
 %changelog
+* Tue Feb 05 2008 Moriyoshi Koizumi <mozo@sfc.keio.ac.jp>
+- Add pygtk2-libglade to ecell3-model-editor dependencies.
+- Add ecell3-session-monitor to ecell3-model-editor dependencies.
+- Remove gnome-python2-canvas from ecell3-session-monitor dependencies.
+
 * Fri Dec 21 2007 Moriyoshi Koizumi <mozo@sfc.keio.ac.jp>
 - Add pygtk2 to building requirements.
 
