@@ -1,22 +1,22 @@
-ecell (3.1.106-2) gutsy; urgency=low
+ecell (3.1.106-2) hardy; urgency=low
 
   * Fix dependencies between packages.
 
  -- Moriyoshi Koizumi <mozo@sfc.keio.ac.jp>  Tue, 05 Feb 2008 17:12:24 +0900
 
-ecell (3.1.106-1) gutsy; urgency=low
+ecell (3.1.106-1) hardy; urgency=low
 
   * Upstream update.
 
  -- Moriyoshi Koizumi <mozo@sfc.keio.ac.jp>  Mon, 04 Feb 2008 17:33:57 +0900
 
-ecell (3.1.106-0rc2-2) gutsy; urgency=low
+ecell (3.1.106-0rc2-2) hardy; urgency=low
 
   * Fix ecell3.doc-base to specify users-manual instead of README.
 
  -- Moriyoshi Koizumi <mozo@sfc.keio.ac.jp>  Tue, 25 Dec 2007 19:59:02 +0900
 
-ecell (3.1.106-0rc2-1) gutsy; urgency=low
+ecell (3.1.106-0rc2-1) hardy; urgency=low
 
   * Upstream update. 
 
