@@ -48,9 +48,9 @@ Name: desktopicon; Description: Create &desktop icons; GroupDescription: Additio
 [Components]
 Name: "rt"; Description: "E-Cell SE Runtime"; Types: full compact custom; Flags: fixed;
 Name: "fe"; Description: "Python Frontends"; Types: full compact; Check: IsPythonInstalled() and IsNumPyInstalled();
-Name: "fe/cli"; Description: "Command-line tools"; Check: IsPythonInstalled() and IsNumPyInstalled();
-Name: "fe/sm"; Description: "Session Monitor"; Check: IsPyGtkInstalled(); Flags: dontinheritcheck;
-Name: "fe/me"; Description: "Model Editor"; Check: IsPyGtkInstalled(); Flags: dontinheritcheck;
+Name: "fe/cli"; Description: "Command-line tools"; Types: full compact; Check: IsPythonInstalled() and IsNumPyInstalled();
+Name: "fe/sm"; Description: "Session Monitor"; Types: full compact; Check: IsPyGtkInstalled(); Flags: dontinheritcheck;
+Name: "fe/me"; Description: "Model Editor"; Types: full; Check: IsPyGtkInstalled(); Flags: dontinheritcheck;
 Name: "dev"; Description: "Development files (C++ header files and import libraries)"; Types: full;
 
 [Files]
