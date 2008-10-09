@@ -47,11 +47,11 @@ Name: desktopicon; Description: Create &desktop icons; GroupDescription: Additio
 
 [Components]
 Name: "rt"; Description: "E-Cell SE Runtime"; Types: full compact custom; Flags: fixed;
-Name: "fe"; Description: "Python Frontends"; Check: IsPythonInstalled();
-Name: "fe/cli"; Description: "Command-line tools"; Check: IsPythonInstalled();
+Name: "fe"; Description: "Python Frontends"; Types: full compact; Check: IsPythonInstalled() and IsNumPyInstalled();
+Name: "fe/cli"; Description: "Command-line tools"; Check: IsPythonInstalled() and IsNumPyInstalled();
 Name: "fe/sm"; Description: "Session Monitor"; Check: IsPyGtkInstalled(); Flags: dontinheritcheck;
 Name: "fe/me"; Description: "Model Editor"; Check: IsPyGtkInstalled(); Flags: dontinheritcheck;
-Name: "dev"; Description: "Development files (C++ header files and import libraries)";
+Name: "dev"; Description: "Development files (C++ header files and import libraries)"; Types: full;
 
 [Files]
 ;E-Cell libraries
@@ -97,16 +97,16 @@ Source: {#Stage}\lib\ecell-3.1\session-monitor\*.*; DestDir: {app}\lib\ecell-3.1
 Source: {#Stage}\doc\*.*; DestDir: {app}\doc; Flags: recursesubdirs ignoreversion
 Source: ecell.ico; DestDir: {app}; Flags: ignoreversion
 
-Source: {#GeneratedSampleEmlDir}\simple\simple.eml; DestDir: {app}\doc\samples\simple\simple.eml;
-Source: {#GeneratedSampleEmlDir}\branchG\branchG.eml; DestDir: {app}\doc\samples\branchG\branchG.eml;
-Source: {#GeneratedSampleEmlDir}\CoupledOscillator\cascade.eml; DestDir: {app}\doc\samples\CoupledOscillator\cascade.eml;
-Source: {#GeneratedSampleEmlDir}\Drosophila\Drosophila.eml; DestDir: {app}\doc\samples\Drosophila\Drosophila.eml;
-Source: {#GeneratedSampleEmlDir}\Drosophila-cpp\Drosophila.eml; DestDir: {app}\doc\samples\Drosophila-cpp\Drosophila.eml;
-Source: {#GeneratedSampleEmlDir}\Heatshock\heatshock.eml; DestDir: {app}\doc\samples\Heatshock\heatshock.eml;
-Source: {#GeneratedSampleEmlDir}\LTD\LTD.eml; DestDir: {app}\doc\samples\LTD\LTD.eml;
-Source: {#GeneratedSampleEmlDir}\Pendulum\Pendulum.eml; DestDir: {app}\doc\samples\Pendulum\Pendulum.eml;
-Source: {#GeneratedSampleEmlDir}\SSystem\SSystem.eml; DestDir: {app}\doc\samples\SSystem\SSystem.eml;
-Source: {#GeneratedSampleEmlDir}\Toy_Hybrid\Toy_Hybrid.eml; DestDir: {app}\doc\samples\Toy_Hybrid\Toy_Hybrid.eml;
+Source: {#GeneratedSampleEmlDir}\simple\simple.eml; DestDir: {app}\doc\samples\simple;
+Source: {#GeneratedSampleEmlDir}\branchG\branchG.eml; DestDir: {app}\doc\samples\branchG;
+Source: {#GeneratedSampleEmlDir}\CoupledOscillator\cascade.eml; DestDir: {app}\doc\samples\CoupledOscillator;
+Source: {#GeneratedSampleEmlDir}\Drosophila\Drosophila.eml; DestDir: {app}\doc\samples\Drosophila;
+Source: {#GeneratedSampleEmlDir}\Drosophila-cpp\Drosophila.eml; DestDir: {app}\doc\samples\Drosophila-cpp;
+Source: {#GeneratedSampleEmlDir}\Heatshock\heatshock.eml; DestDir: {app}\doc\samples\Heatshock;
+Source: {#GeneratedSampleEmlDir}\LTD\LTD.eml; DestDir: {app}\doc\samples\LTD;
+Source: {#GeneratedSampleEmlDir}\Pendulum\Pendulum.eml; DestDir: {app}\doc\samples\Pendulum;
+Source: {#GeneratedSampleEmlDir}\SSystem\SSystem.eml; DestDir: {app}\doc\samples\SSystem;
+Source: {#GeneratedSampleEmlDir}\Toy_Hybrid\Toy_Hybrid.eml; DestDir: {app}\doc\samples\Toy_Hybrid;
 
 [Icons]
 ;Main E-Cell icons in Start Menu
@@ -117,16 +117,16 @@ Name: {group}\E-Cell Session Monitor; Filename: {app}\bin\ecell3-session-monitor
 Name: {group}\E-Cell Model Editor; Filename: {app}\bin\ecell3-model-editor.cmd; WorkingDir: {app}; IconFilename: {app}\ecell.ico; Components: fe/me;
 
 ;E-Cell sample icons in Start Menu
-Name: {group}\Samples\Simple; Filename: {app}\bin\ecell3-session-monitor.cmd; Parameters: -f doc\samples\simple\simple.eml; WorkingDir: {app}; Components: fe/sm;
-Name: {group}\Samples\BranchG; Filename: {app}\bin\ecell3-session-monitor.cmd; Parameters: -f doc\samples\branchG\branchG.eml; WorkingDir: {app}; Components: fe/sm;
-Name: {group}\Samples\CoupledOscillator; Filename: {app}\bin\ecell3-session-monitor.cmd; Parameters: -f doc\samples\CoupledOscillator\cascade.eml; WorkingDir: {app}; Components: fe/sm;
-Name: {group}\Samples\Drosophila; Filename: {app}\bin\ecell3-session-monitor.cmd; Parameters: -f doc\samples\Drosophila\Drosophila.eml; WorkingDir: {app}; Components: fe/sm;
-Name: {group}\Samples\Drosophila-cpp; Filename: {app}\bin\ecell3-session-monitor.cmd; Parameters: -f doc\samples\Drosophila-cpp\Drosophila.eml; WorkingDir: {app}; Components: fe/sm;
-Name: {group}\Samples\Heatshock; Filename: {app}\bin\ecell3-session-monitor.cmd; Parameters: -f doc\samples\Heatshock\heatshock.eml; WorkingDir: {app}; Components: fe/sm;
-Name: {group}\Samples\LTD; Filename: {app}\bin\ecell3-session-monitor.cmd; Parameters: -f doc\samples\LTD\LTD.eml; WorkingDir: {app}; Components: fe/sm;
-Name: {group}\Samples\Pendulum; Filename: {app}\bin\ecell3-session-monitor.cmd; Parameters: -f doc\samples\Pendulum\Pendulum.eml; WorkingDir: {app}; Components: fe/sm;
-Name: {group}\Samples\SSystem; Filename: {app}\bin\ecell3-session-monitor.cmd; Parameters: -f doc\samples\SSystem\SSystem.eml; WorkingDir: {app}; Components: fe/sm;
-Name: {group}\Samples\Toy_Hybrid; Filename: {app}\bin\ecell3-session-monitor.cmd; Parameters: -f doc\samples\Toy_Hybrid\Toy_Hybrid.eml; WorkingDir: {app}; Components: fe/sm;
+Name: {group}\Samples\Simple; Filename: {app}\bin\ecell3-session-monitor.cmd; Parameters: -f doc\samples\simple\simple.eml; WorkingDir: {app}; IconFilename: {app}\ecell.ico; Components: fe/sm;
+Name: {group}\Samples\BranchG; Filename: {app}\bin\ecell3-session-monitor.cmd; Parameters: -f doc\samples\branchG\branchG.eml; WorkingDir: {app}; IconFilename: {app}\ecell.ico; Components: fe/sm;
+Name: {group}\Samples\CoupledOscillator; Filename: {app}\bin\ecell3-session-monitor.cmd; Parameters: -f doc\samples\CoupledOscillator\cascade.eml; WorkingDir: {app}; IconFilename: {app}\ecell.ico; Components: fe/sm;
+Name: {group}\Samples\Drosophila; Filename: {app}\bin\ecell3-session-monitor.cmd; Parameters: -f doc\samples\Drosophila\Drosophila.eml; WorkingDir: {app}; IconFilename: {app}\ecell.ico; Components: fe/sm;
+Name: {group}\Samples\Drosophila-cpp; Filename: {app}\bin\ecell3-session-monitor.cmd; Parameters: -f doc\samples\Drosophila-cpp\Drosophila.eml; WorkingDir: {app}; IconFilename: {app}\ecell.ico; Components: fe/sm;
+Name: {group}\Samples\Heatshock; Filename: {app}\bin\ecell3-session-monitor.cmd; Parameters: -f doc\samples\Heatshock\heatshock.eml; WorkingDir: {app}; IconFilename: {app}\ecell.ico; Components: fe/sm;
+Name: {group}\Samples\LTD; Filename: {app}\bin\ecell3-session-monitor.cmd; Parameters: -f doc\samples\LTD\LTD.eml; WorkingDir: {app}; IconFilename: {app}\ecell.ico; Components: fe/sm;
+Name: {group}\Samples\Pendulum; Filename: {app}\bin\ecell3-session-monitor.cmd; Parameters: -f doc\samples\Pendulum\Pendulum.eml; WorkingDir: {app}; IconFilename: {app}\ecell.ico; Components: fe/sm;
+Name: {group}\Samples\SSystem; Filename: {app}\bin\ecell3-session-monitor.cmd; Parameters: -f doc\samples\SSystem\SSystem.eml; WorkingDir: {app}; IconFilename: {app}\ecell.ico; Components: fe/sm;
+Name: {group}\Samples\Toy_Hybrid; Filename: {app}\bin\ecell3-session-monitor.cmd; Parameters: -f doc\samples\Toy_Hybrid\Toy_Hybrid.eml; WorkingDir: {app}; IconFilename: {app}\ecell.ico; Components: fe/sm;
 
 ;Main E-Cell shortcuts in Desktop
 Name: {userdesktop}\E-Cell Session Monitor; Filename: {app}\bin\ecell3-session-monitor.cmd; WorkingDir: {app}; Tasks: desktopicon; IconFilename: {app}\ecell.ico; Components: fe/sm;
@@ -155,13 +155,14 @@ const
   LICENSE_FILE   =  '{#LicenseFile}';
   PYTHON_VERSION =  '{#PythonVersion}';
   GTK_VERSION    =  '{#GtkVersion}';
-
+  NUMPY_VERSION  =  '{#NumPyVersion}';
 var
   URLLabel: TNewStaticText;
   InstalledComponentsPage: TOutputMsgMemoWizardPage;
   PythonInstallation: Installation;
   GtkInstallation: Installation;
   PyGtkInstalled: Boolean;
+  NumPyInstalled: Boolean;
 
 function IsPythonInstalled(): Boolean;
 begin
@@ -176,6 +177,11 @@ end;
 function IsPyGtkInstalled(): Boolean;
 begin
   Result := PyGtkInstalled;
+end;
+
+function IsNumPyInstalled(): Boolean;
+begin
+  Result := NumPyInstalled;
 end;
 
 function Split(s, delimiter: String): TArrayOfString;
@@ -285,6 +291,15 @@ begin
     if resultCode = 0 then Result := True;
 end;
 
+function CheckNumPyInstalled(pythonHome: String): Boolean;
+var
+  resultCode: Integer;
+begin
+  Result := False
+  if Exec(AddBackslash(pythonHome) + 'python.exe', '-c "import numpy; import sys; from distutils.version import StrictVersion; sys.exit(StrictVersion(numpy.version.version) < StrictVersion(''' + NUMPY_VERSION + ''') and 1 or 0)"', '', SW_HIDE, ewWaitUntilTerminated, resultCode) then
+    if resultCode = 0 then Result := True;
+end;
+
 procedure URLLabel_OnClick(Sender: TObject);
 var
   Dummy: Integer;
@@ -302,10 +317,14 @@ function InitializeSetup(): Boolean;
 begin
   GtkInstallation := CheckGtkInstallation();
   PythonInstallation := CheckPythonInstallation();
-  if PythonInstallation.version <> '' then
-    PyGtkInstalled := CheckPyGtkInstalled(PythonInstallation.path)
-  else
+  if PythonInstallation.version <> '' then begin
+    PyGtkInstalled := CheckPyGtkInstalled(PythonInstallation.path);
+    NumPyInstalled := CheckNumPyInstalled(PythonInstallation.path);
+  end 
+  else begin
     PyGtkInstalled := False;
+    NumPyInstalled := False;
+  end;
   Result := True
 end;
 
@@ -337,6 +356,11 @@ begin
     msg := msg + 'GTK+ (version: ' + GtkInstallation.version + ') is installed under ' + GtkInstallation.path + Chr(13) + Chr(10)
   else
     msg := msg + 'GTK+ (version >= ' + GTK_VERSION + ') is not installed.' + Chr(13) + Chr(10);
+
+  if NumPyInstalled then
+    msg := msg + 'NumPy is installed' + Chr(13) + Chr(10)
+  else
+    msg := msg + 'NumPy is not installed.' + Chr(13) + Chr(10);
 
   if PyGtkInstalled then
     msg := msg + 'PyGTK is installed' + Chr(13) + Chr(10)
