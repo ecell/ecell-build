@@ -78,15 +78,17 @@ Source: {#Stage}\bin\ecell3-eml2em.cmd; DestDir: {app}\bin; Flags: ignoreversion
 Source: {#Stage}\bin\ecell3-em2eml; DestDir: {app}\bin; Flags: ignoreversion; Components: fe/cli;
 Source: {#Stage}\bin\ecell3-em2eml.cmd; DestDir: {app}\bin; Flags: ignoreversion; Components: fe/cli;
 
+Source: {#Stage}\include\ltdl.h; DestDir: {app}\include; Flags: ignoreversion; Components: dev;
 Source: {#Stage}\include\ecell-3.1\*.*; DestDir: {app}\include\ecell-3.1; Flags: recursesubdirs ignoreversion; Components: dev;
 Source: {#Stage}\include\dmtool\*.*; DestDir: {app}\include\dmtool; Flags: recursesubdirs ignoreversion; Components: dev;
 Source: {#Stage}\include\gsl\*.*; DestDir: {app}\include\gsl; Flags: recursesubdirs ignoreversion; Components: dev;
 Source: {#Stage}\include\boost\*.*; DestDir: {app}\include\boost; Flags: recursesubdirs ignoreversion; Components: dev;
 Source: {#Stage}\lib\boost_python.lib; DestDir: {app}\lib; Flags: ignoreversion; Components: dev;
+Source: {#Stage}\lib\ltdl.lib; DestDir: {app}\lib; Flags: ignoreversion; Components: dev;
 Source: {#Stage}\lib\gsl.lib; DestDir: {app}\lib; Flags: ignoreversion; Components: dev;
+Source: {#Stage}\lib\cblas.lib; DestDir: {app}\lib; Flags: ignoreversion; Components: dev;
 Source: {#Stage}\lib\ecs.lib; DestDir: {app}\lib; Flags: ignoreversion; Components: dev;
 Source: {#Stage}\lib\emc.lib; DestDir: {app}\lib; Flags: ignoreversion; Components: dev;
-Source: {#Stage}\lib\cblas.lib; DestDir: {app}\lib; Flags: ignoreversion; Components: dev;
 
 Source: {#Stage}\lib\site-packages\gnomecanvas.pyd; DestDir: {app}\lib\site-packages; Flags: ignoreversion; Components: fe/me;
 Source: {#Stage}\lib\site-packages\E_Cell*.egg-info; DestDir: {app}\lib\site-packages; Flags: recursesubdirs ignoreversion; Components: fe;
