@@ -79,7 +79,7 @@ Source: {#Stage}\bin\ecell3-em2eml; DestDir: {app}\bin; Flags: ignoreversion; Co
 Source: {#Stage}\bin\ecell3-em2eml.cmd; DestDir: {app}\bin; Flags: ignoreversion; Components: fe/cli;
 
 Source: {#Stage}\include\ltdl.h; DestDir: {app}\include; Flags: ignoreversion; Components: dev;
-Source: {#Stage}\include\ecell-3.1\*.*; DestDir: {app}\include\ecell-3.1; Flags: recursesubdirs ignoreversion; Components: dev;
+Source: {#Stage}\include\ecell-3.2\*.*; DestDir: {app}\include\ecell-3.2; Flags: recursesubdirs ignoreversion; Components: dev;
 Source: {#Stage}\include\dmtool\*.*; DestDir: {app}\include\dmtool; Flags: recursesubdirs ignoreversion; Components: dev;
 Source: {#Stage}\include\gsl\*.*; DestDir: {app}\include\gsl; Flags: recursesubdirs ignoreversion; Components: dev;
 Source: {#Stage}\include\boost\*.*; DestDir: {app}\include\boost; Flags: recursesubdirs ignoreversion; Components: dev;
@@ -93,9 +93,9 @@ Source: {#Stage}\lib\emc.lib; DestDir: {app}\lib; Flags: ignoreversion; Componen
 Source: {#Stage}\lib\site-packages\gnomecanvas.pyd; DestDir: {app}\lib\site-packages; Flags: ignoreversion; Components: fe/me;
 Source: {#Stage}\lib\site-packages\E_Cell*.egg-info; DestDir: {app}\lib\site-packages; Flags: recursesubdirs ignoreversion; Components: fe;
 Source: {#Stage}\lib\site-packages\ecell\*.*; DestDir: {app}\lib\site-packages\ecell; Flags: recursesubdirs ignoreversion; Components: fe;
-Source: {#Stage}\lib\ecell-3.1\dms\*.*; DestDir: {app}\lib\ecell-3.1\dms; Flags: recursesubdirs ignoreversion; Components: rt;
-Source: {#Stage}\lib\ecell-3.1\model-editor\*.*; DestDir: {app}\lib\ecell-3.1\model-editor; Flags: recursesubdirs ignoreversion; Components: fe/me;
-Source: {#Stage}\lib\ecell-3.1\session-monitor\*.*; DestDir: {app}\lib\ecell-3.1\session-monitor; Flags: recursesubdirs ignoreversion; Components: fe/sm;
+Source: {#Stage}\lib\ecell-3.2\dms\*.*; DestDir: {app}\lib\ecell-3.2\dms; Flags: recursesubdirs ignoreversion; Components: rt;
+Source: {#Stage}\lib\ecell-3.2\model-editor\*.*; DestDir: {app}\lib\ecell-3.2\model-editor; Flags: recursesubdirs ignoreversion; Components: fe/me;
+Source: {#Stage}\lib\ecell-3.2\session-monitor\*.*; DestDir: {app}\lib\ecell-3.2\session-monitor; Flags: recursesubdirs ignoreversion; Components: fe/sm;
 Source: {#Stage}\doc\*.*; DestDir: {app}\doc; Flags: recursesubdirs ignoreversion
 Source: ecell.ico; DestDir: {app}; Flags: ignoreversion
 
