@@ -12,7 +12,7 @@
 ; For more information, please refer to: http://moin.e-cell.org/CreatingWindowsInstaller
 
 
-#define Stage         GetEnv('ECELL_STAGING_HOME') + '\' + Platform + '\Release'
+#define Stage         GetEnv('STAGE')
 #define LicenseFile   Stage + '\doc\COPYING.GPLv2'
 
 [Setup]
@@ -60,7 +60,7 @@ Source: {#Stage}\bin\gsl.dll; DestDir: {app}\bin; Flags: onlyifdoesntexist ignor
 Source: {#Stage}\bin\ecs.dll; DestDir: {app}\bin; Flags: onlyifdoesntexist ignoreversion; Components: rt;
 Source: {#Stage}\bin\emc.dll; DestDir: {app}\bin; Flags: onlyifdoesntexist ignoreversion; Components: rt;
 Source: {#Stage}\bin\cblas.dll; DestDir: {app}\bin; Flags: onlyifdoesntexist ignoreversion; Components: rt;
-Source: {#Stage}\bin\boost_python.dll; DestDir: {app}\bin; Flags: ignoreversion; Components: fe;
+Source: {#Stage}\bin\boost_python*.dll; DestDir: {app}\bin; Flags: ignoreversion; Components: fe;
 Source: {#Stage}\bin\ecell3-session-monitor; DestDir: {app}\bin; Flags: ignoreversion; Components: fe/sm;
 Source: {#Stage}\bin\ecell3-session-monitor.cmd; DestDir: {app}\bin; Flags: ignoreversion; Components: fe/sm;
 Source: {#Stage}\bin\ecell3-session-manager; DestDir: {app}\bin; Flags: ignoreversion; Components: fe/cli;
@@ -79,11 +79,11 @@ Source: {#Stage}\bin\ecell3-em2eml; DestDir: {app}\bin; Flags: ignoreversion; Co
 Source: {#Stage}\bin\ecell3-em2eml.cmd; DestDir: {app}\bin; Flags: ignoreversion; Components: fe/cli;
 
 Source: {#Stage}\include\ltdl.h; DestDir: {app}\include; Flags: ignoreversion; Components: dev;
-Source: {#Stage}\include\ecell-3.2\*.*; DestDir: {app}\include\ecell-3.2; Flags: recursesubdirs ignoreversion; Components: dev;
+Source: {#Stage}\include\{#PkgLibDir}\*.*; DestDir: {app}\include\{#PkgLibDir}; Flags: recursesubdirs ignoreversion; Components: dev;
 Source: {#Stage}\include\dmtool\*.*; DestDir: {app}\include\dmtool; Flags: recursesubdirs ignoreversion; Components: dev;
 Source: {#Stage}\include\gsl\*.*; DestDir: {app}\include\gsl; Flags: recursesubdirs ignoreversion; Components: dev;
 Source: {#Stage}\include\boost\*.*; DestDir: {app}\include\boost; Flags: recursesubdirs ignoreversion; Components: dev;
-Source: {#Stage}\lib\boost_python.lib; DestDir: {app}\lib; Flags: ignoreversion; Components: dev;
+Source: {#Stage}\lib\boost_python*.lib; DestDir: {app}\lib; Flags: ignoreversion; Components: dev;
 Source: {#Stage}\lib\ltdl.lib; DestDir: {app}\lib; Flags: ignoreversion; Components: dev;
 Source: {#Stage}\lib\gsl.lib; DestDir: {app}\lib; Flags: ignoreversion; Components: dev;
 Source: {#Stage}\lib\cblas.lib; DestDir: {app}\lib; Flags: ignoreversion; Components: dev;
@@ -93,9 +93,9 @@ Source: {#Stage}\lib\emc.lib; DestDir: {app}\lib; Flags: ignoreversion; Componen
 Source: {#Stage}\lib\site-packages\gnomecanvas.pyd; DestDir: {app}\lib\site-packages; Flags: ignoreversion; Components: fe/me;
 Source: {#Stage}\lib\site-packages\E_Cell*.egg-info; DestDir: {app}\lib\site-packages; Flags: recursesubdirs ignoreversion; Components: fe;
 Source: {#Stage}\lib\site-packages\ecell\*.*; DestDir: {app}\lib\site-packages\ecell; Flags: recursesubdirs ignoreversion; Components: fe;
-Source: {#Stage}\lib\ecell-3.2\dms\*.*; DestDir: {app}\lib\ecell-3.2\dms; Flags: recursesubdirs ignoreversion; Components: rt;
-Source: {#Stage}\lib\ecell-3.2\model-editor\*.*; DestDir: {app}\lib\ecell-3.2\model-editor; Flags: recursesubdirs ignoreversion; Components: fe/me;
-Source: {#Stage}\lib\ecell-3.2\session-monitor\*.*; DestDir: {app}\lib\ecell-3.2\session-monitor; Flags: recursesubdirs ignoreversion; Components: fe/sm;
+Source: {#Stage}\lib\{#PkgLibDir}\dms\*.*; DestDir: {app}\lib\{#PkgLibDir}\dms; Flags: recursesubdirs ignoreversion; Components: rt;
+Source: {#Stage}\lib\{#PkgLibDir}\model-editor\*.*; DestDir: {app}\lib\{#PkgLibDir}\model-editor; Flags: recursesubdirs ignoreversion; Components: fe/me;
+Source: {#Stage}\lib\{#PkgLibDir}\session-monitor\*.*; DestDir: {app}\lib\{#PkgLibDir}\session-monitor; Flags: recursesubdirs ignoreversion; Components: fe/sm;
 Source: {#Stage}\doc\*.*; DestDir: {app}\doc; Flags: recursesubdirs ignoreversion
 Source: ecell.ico; DestDir: {app}; Flags: ignoreversion
 
