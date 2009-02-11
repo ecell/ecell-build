@@ -95,7 +95,9 @@ Source: {#Stage}\lib\site-packages\E_Cell*.egg-info; DestDir: {app}\lib\site-pac
 Source: {#Stage}\lib\site-packages\ecell\*.*; DestDir: {app}\lib\site-packages\ecell; Flags: recursesubdirs ignoreversion; Components: fe;
 Source: {#Stage}\lib\{#PkgLibDir}\dms\*.*; DestDir: {app}\lib\{#PkgLibDir}\dms; Flags: recursesubdirs ignoreversion; Components: rt;
 Source: {#Stage}\lib\{#PkgLibDir}\model-editor\*.*; DestDir: {app}\lib\{#PkgLibDir}\model-editor; Flags: recursesubdirs ignoreversion; Components: fe/me;
+Source: {#Stage}\share\{#PkgLibDir}\model-editor\*.*; DestDir: {app}\share\{#PkgLibDir}\model-editor; Flags: recursesubdirs ignoreversion; Components: fe/me;
 Source: {#Stage}\lib\{#PkgLibDir}\session-monitor\*.*; DestDir: {app}\lib\{#PkgLibDir}\session-monitor; Flags: recursesubdirs ignoreversion; Components: fe/sm;
+Source: {#Stage}\share\{#PkgLibDir}\session-monitor\*.*; DestDir: {app}\share\{#PkgLibDir}\session-monitor; Flags: recursesubdirs ignoreversion; Components: fe/sm;
 Source: {#Stage}\doc\*.*; DestDir: {app}\doc; Flags: recursesubdirs ignoreversion
 Source: ecell.ico; DestDir: {app}; Flags: ignoreversion
 
