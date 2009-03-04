@@ -20,8 +20,6 @@ AppName=E-Cell Simulation Environment
 AppVerName=E-Cell Simulation Environment {#Version}
 AppPublisher=Keio University
 AppPublisherURL=http://www.e-cell.org/
-AppSupportURL=http://sourceforge.net/forum/forum.php?forum_id=247258
-AppUpdatesURL=http://sourceforge.net/project/showfiles.php?group_id=72485
 DefaultDirName={pf}\E-Cell
 DefaultGroupName=E-Cell
 SetupIconFile=ecell3-installer.ico
@@ -79,7 +77,7 @@ Source: {#Stage}\bin\ecell3-em2eml; DestDir: {app}\bin; Flags: ignoreversion; Co
 Source: {#Stage}\bin\ecell3-em2eml.cmd; DestDir: {app}\bin; Flags: ignoreversion; Components: fe/cli;
 
 Source: {#Stage}\include\ltdl.h; DestDir: {app}\include; Flags: ignoreversion; Components: dev;
-Source: {#Stage}\include\{#PkgLibDir}\*.*; DestDir: {app}\include\{#PkgLibDir}; Flags: recursesubdirs ignoreversion; Components: dev;
+Source: {#Stage}\include\{#PkgDir}\*.*; DestDir: {app}\include\{#PkgDir}; Flags: recursesubdirs ignoreversion; Components: dev;
 Source: {#Stage}\include\dmtool\*.*; DestDir: {app}\include\dmtool; Flags: recursesubdirs ignoreversion; Components: dev;
 Source: {#Stage}\include\gsl\*.*; DestDir: {app}\include\gsl; Flags: recursesubdirs ignoreversion; Components: dev;
 Source: {#Stage}\include\boost\*.*; DestDir: {app}\include\boost; Flags: recursesubdirs ignoreversion; Components: dev;
@@ -93,12 +91,13 @@ Source: {#Stage}\lib\emc.lib; DestDir: {app}\lib; Flags: ignoreversion; Componen
 Source: {#Stage}\lib\site-packages\gnomecanvas.pyd; DestDir: {app}\lib\site-packages; Flags: ignoreversion; Components: fe/me;
 Source: {#Stage}\lib\site-packages\E_Cell*.egg-info; DestDir: {app}\lib\site-packages; Flags: recursesubdirs ignoreversion; Components: fe;
 Source: {#Stage}\lib\site-packages\ecell\*.*; DestDir: {app}\lib\site-packages\ecell; Flags: recursesubdirs ignoreversion; Components: fe;
-Source: {#Stage}\lib\{#PkgLibDir}\dms\*.*; DestDir: {app}\lib\{#PkgLibDir}\dms; Flags: recursesubdirs ignoreversion; Components: rt;
-Source: {#Stage}\lib\{#PkgLibDir}\model-editor\*.*; DestDir: {app}\lib\{#PkgLibDir}\model-editor; Flags: recursesubdirs ignoreversion; Components: fe/me;
-Source: {#Stage}\share\{#PkgLibDir}\model-editor\*.*; DestDir: {app}\share\{#PkgLibDir}\model-editor; Flags: recursesubdirs ignoreversion; Components: fe/me;
-Source: {#Stage}\lib\{#PkgLibDir}\session-monitor\*.*; DestDir: {app}\lib\{#PkgLibDir}\session-monitor; Flags: recursesubdirs ignoreversion; Components: fe/sm;
-Source: {#Stage}\share\{#PkgLibDir}\session-monitor\*.*; DestDir: {app}\share\{#PkgLibDir}\session-monitor; Flags: recursesubdirs ignoreversion; Components: fe/sm;
+Source: {#Stage}\lib\{#PkgDir}\dms\*.*; DestDir: {app}\lib\{#PkgDir}\dms; Flags: recursesubdirs ignoreversion; Components: rt;
+Source: {#Stage}\lib\{#PkgDir}\model-editor\*.*; DestDir: {app}\lib\{#PkgDir}\model-editor; Flags: recursesubdirs ignoreversion; Components: fe/me;
+Source: {#Stage}\share\{#PkgDir}\model-editor\*.*; DestDir: {app}\share\{#PkgDir}\model-editor; Flags: recursesubdirs ignoreversion; Components: fe/me;
+Source: {#Stage}\lib\{#PkgDir}\session-monitor\*.*; DestDir: {app}\lib\{#PkgDir}\session-monitor; Flags: recursesubdirs ignoreversion; Components: fe/sm;
+Source: {#Stage}\share\{#PkgDir}\session-monitor\*.*; DestDir: {app}\share\{#PkgDir}\session-monitor; Flags: recursesubdirs ignoreversion; Components: fe/sm;
 Source: {#Stage}\doc\*.*; DestDir: {app}\doc; Flags: recursesubdirs ignoreversion
+Source: {#Stage}\etc\{#PkgDir}\*; DestDir: {app}\etc\{#PkgDir}; Flags: recursesubdirs ignoreversion; Components: fe;
 Source: ecell.ico; DestDir: {app}; Flags: ignoreversion
 
 Source: {#GeneratedSampleEmlDir}\simple\simple.eml; DestDir: {app}\doc\samples\simple;
@@ -167,6 +166,7 @@ var
   GtkInstallation: Installation;
   PyGtkInstalled: Boolean;
   NumPyInstalled: Boolean;
+  EnvPythonHomeSet: Boolean;
 
 function IsPythonInstalled(): Boolean;
 begin
@@ -229,7 +229,7 @@ begin
   if (Result = 0) and (aLen < bLen) then Result := -1;
 end;
 
-function CheckPythonInstallation(): Installation;
+function CheckPythonInstallation(const exactVersion: Boolean): Installation;
 var
   versions: TArrayOfString;
   pythonDir  : String;
@@ -240,9 +240,11 @@ begin
   { Check if Python has been installed, if it meets a minimum version, and if python.exe exists }
   if RegGetSubkeyNames(HKLM, 'Software\Python\PythonCore', versions) then begin
     for i := 0 to GetArrayLength(versions) - 1 do begin
-      if CompareVersion(versions[i], PYTHON_VERSION) >= 0 then begin
+      if ((not exactVersion) and (CompareVersion(versions[i], PYTHON_VERSION) = 0)) or
+         (CompareVersion(versions[i], PYTHON_VERSION) = 0) then begin
         RegQueryStringValue(HKLM, 'Software\Python\PythonCore\' + versions[i] + '\InstallPath', '', pythonDir)
-        if FileExists(pythonDir + '\python.exe') then begin
+        if FileExists(AddBackslash(pythonDir) + 'python.exe') and
+           FileExists(AddBackslash(pythonDir) + 'pythonw.exe') then begin
           Result.version := versions[i]
           Result.path := pythonDir
         end;
@@ -251,9 +253,11 @@ begin
   end;
   if (Result.version = '') and RegGetSubkeyNames(HKCU, 'Software\Python\PythonCore', versions) then begin
     for i := 0 to GetArrayLength(versions) - 1 do begin
-      if CompareVersion(versions[i], PYTHON_VERSION) >= 0 then begin
+      if ((not exactVersion) and (CompareVersion(versions[i], PYTHON_VERSION) = 0)) or
+         (CompareVersion(versions[i], PYTHON_VERSION) = 0) then begin
         RegQueryStringValue(HKCU, 'Software\Python\PythonCore\' + versions[i] + '\InstallPath', '', pythonDir)
-        if FileExists(pythonDir + '\python.exe') then begin
+        if FileExists(AddBackslash(pythonDir) + 'python.exe') and
+           FileExists(AddBackslash(pythonDir) + 'pythonw.exe') then begin
           Result.version := versions[i]
           Result.path := pythonDir
         end;
@@ -320,7 +324,7 @@ end;
 function InitializeSetup(): Boolean;
 begin
   GtkInstallation := CheckGtkInstallation();
-  PythonInstallation := CheckPythonInstallation();
+  PythonInstallation := CheckPythonInstallation(True);
   if PythonInstallation.version <> '' then begin
     PyGtkInstalled := CheckPyGtkInstalled(PythonInstallation.path);
     NumPyInstalled := CheckNumPyInstalled(PythonInstallation.path);
@@ -329,6 +333,7 @@ begin
     PyGtkInstalled := False;
     NumPyInstalled := False;
   end;
+  EnvPythonHomeSet := GetEnv('PYTHONHOME') = PythonInstallation.path
   Result := True
 end;
 
@@ -370,6 +375,10 @@ begin
     msg := msg + 'PyGTK is installed' + Chr(13) + Chr(10)
   else
     msg := msg + 'PyGTK is not installed.' + Chr(13) + Chr(10);
+
+  if not EnvPythonHomeSet then begin
+    msg := msg + 'Environment Variable PYTHONHOME is not set to ' + PythonInstallation.path + '.  You need to set it manually as this installer will not explicitly reset it to the path to the relevant Python intallation.' + Chr(13) + Chr(10)
+  end
 
   InstalledComponentsPage := CreateOutputMsgMemoPage(wpLicense,
     'Checks for required components', 'Checking the installation of components that are required by E-Cell SE.',
