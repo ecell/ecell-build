@@ -333,7 +333,7 @@ begin
     PyGtkInstalled := False;
     NumPyInstalled := False;
   end;
-  EnvPythonHomeSet := GetEnv('PYTHONHOME') = PythonInstallation.path
+  EnvPythonHomeSet := RemoveBackSlashUnlessRoot(GetEnv('PYTHONHOME')) = RemoveBackSlashUnlessRoot(PythonInstallation.path)
   Result := True
 end;
 
