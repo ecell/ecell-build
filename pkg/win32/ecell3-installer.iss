@@ -111,6 +111,9 @@ Source: {#GeneratedSampleEmlDir}\Pendulum\Pendulum.eml; DestDir: {app}\doc\sampl
 Source: {#GeneratedSampleEmlDir}\SSystem\SSystem.eml; DestDir: {app}\doc\samples\SSystem;
 Source: {#GeneratedSampleEmlDir}\Toy_Hybrid\Toy_Hybrid.eml; DestDir: {app}\doc\samples\Toy_Hybrid;
 
+Source: python.exe.manifest; DestDir: {code:GetPythonInstallPath}; Flags: onlyifdoesntexist ignoreversion; Components: rt;
+Source: pythonw.exe.manifest; DestDir: {code:GetPythonInstallPath}; Flags: onlyifdoesntexist ignoreversion; Components: rt;
+
 [Icons]
 ;Main E-Cell icons in Start Menu
 Name: {group}\README; Filename: "write.exe"; Parameters: """{app}\doc\README"""; WorkingDir: {app}; IconFilename: {app}\ecell.ico;
@@ -167,6 +170,11 @@ var
   PyGtkInstalled: Boolean;
   NumPyInstalled: Boolean;
   EnvPythonHomeSet: Boolean;
+
+function GetPythonInstallPath(param: String): String;
+begin
+  Result := PythonInstallation.path
+end;
 
 function IsPythonInstalled(): Boolean;
 begin
