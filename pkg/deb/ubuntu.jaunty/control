@@ -3,9 +3,9 @@ Section: contrib/science
 Priority: extra
 Maintainer: Moriyoshi Koizumi <mozo@sfc.keio.ac.jp>
 Build-Depends: cdbs, debhelper (>= 5), autotools-dev, build-essential,
-    python2.5-dev, libboost-dev (>= 1.33.0), libboost-python-dev (>= 1.33.0),
-    libgsl0-dev (>=1.8), python-numpy (>=1.0.1), python-numpy-dev (>=1.0.1),
-    python-gtk2 (>=2.6), python-gnome2 (>=2.6), python-glade2 (>=2.6),
+    python2.6-dev, libboost-dev (>= 1.34.0), libboost-python-dev (>= 1.34.0),
+    libgsl0-dev (>=1.8), python-numpy (>=1.0.1),
+    python-gtk2 (>=2.6), python-gnomecanvas (>=2.6), python-glade2 (>=2.6),
     docbook-xml, docbook-utils, doxygen
 Standards-Version: 3.7.2
 
@@ -31,16 +31,7 @@ Package: ecell3-model-editor
 Architecture: any
 Section: contrib/science
 Depends: ecell3, ecell3-session-monitor, ${shlibs:Depends}, ${misc:Depends},
-    python-numpy (>=1.0.1), python-gtk2 (>=2.6), python-gnome2 (>=2.6),
-    python-glade2 (>=2.6)
-Description: E-Cell System is an object-oriented software suite for modeling,
- simulation, and analysis of large scale complex systems, particularly focused
- on biological details of cellular behavior.
-
-Package: ecell3-tool-launcher
-Architecture: any
-Section: contrib/science
-Depends: ecell3, ${shlibs:Depends}, ${misc:Depends}, python-gtk2 (>=2.6),
+    python-numpy (>=1.0.1), python-gtk2 (>=2.6), python-gnomecanvas (>=2.6),
     python-glade2 (>=2.6)
 Description: E-Cell System is an object-oriented software suite for modeling,
  simulation, and analysis of large scale complex systems, particularly focused

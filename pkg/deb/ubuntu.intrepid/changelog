@@ -1,32 +1,38 @@
-ecell (3.1.106-3) etch; urgency=low
+ecell (3.1.107-1) intrepid; urgency=low
+
+  * Upstream update.
+
+ -- Moriyoshi Koizumi <mozo@sfc.keio.ac.jp>  Wed, 24 Jun 2008 13:24:12 +0900
+
+ecell (3.1.106-3) intrepid; urgency=low
 
   * Reflect versioning scheme changes of libsbml packages.
 
  -- Moriyoshi Koizumi <mozo@sfc.keio.ac.jp>  Wed, 18 Jun 2008 18:24:12 +0900
 
-ecell (3.1.106-2) etch; urgency=low
+ecell (3.1.106-2) intrepid; urgency=low
 
   * Fix dependencies between packages.
 
  -- Moriyoshi Koizumi <mozo@sfc.keio.ac.jp>  Tue, 05 Feb 2008 17:12:24 +0900
 
-ecell (3.1.106-1) etch; urgency=low
+ecell (3.1.106-1) intrepid; urgency=low
 
   * Upstream update.
 
  -- Moriyoshi Koizumi <mozo@sfc.keio.ac.jp>  Mon, 04 Feb 2008 17:33:57 +0900
 
-ecell (3.1.106-0rc2-2) etch; urgency=low
+ecell (3.1.106-0rc2-2) intrepid; urgency=low
 
   * Fix ecell3.doc-base to specify users-manual instead of README.
 
  -- Moriyoshi Koizumi <mozo@sfc.keio.ac.jp>  Tue, 25 Dec 2007 19:59:02 +0900
 
-ecell (3.1.106-0rc2-1) etch; urgency=low
+ecell (3.1.106-0rc2-1) intrepid; urgency=low
 
-  * Upstream update.
+  * Upstream update. 
 
- -- Moriyoshi Koizumi <mozo@sfc.keio.ac.jp>  Fri, 21 Dec 2007 02:55:54 +0900
+ -- Moriyoshi Koizumi <mozo@sfc.keio.ac.jp>  Fri, 21 Dec 2007 02:57:00 +0900
 
 ecell (3.1.106-0rc1-1) unstable; urgency=low
 
