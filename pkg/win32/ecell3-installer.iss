@@ -59,6 +59,11 @@ Source: {#Stage}\bin\ecs.dll; DestDir: {app}\bin; Flags: onlyifdoesntexist ignor
 Source: {#Stage}\bin\emc.dll; DestDir: {app}\bin; Flags: onlyifdoesntexist ignoreversion; Components: rt;
 Source: {#Stage}\bin\cblas.dll; DestDir: {app}\bin; Flags: onlyifdoesntexist ignoreversion; Components: rt;
 Source: {#Stage}\bin\boost_python*.dll; DestDir: {app}\bin; Flags: ignoreversion; Components: fe;
+Source: {#Stage}\bin\libsbml.dll; DestDir: {app}\bin; Flags: ignoreversion; Components: fe;
+Source: {#Stage}\bin\libbz2.dll; DestDir: {app}\bin; Flags: ignoreversion; Components: fe;
+Source: {#Stage}\bin\zlib1.dll; DestDir: {app}\bin; Flags: ignoreversion; Components: fe;
+Source: {#Stage}\bin\iconv.dll; DestDir: {app}\bin; Flags: ignoreversion; Components: fe;
+Source: {#Stage}\bin\libxml2-2.dll; DestDir: {app}\bin; Flags: ignoreversion; Components: fe;
 Source: {#Stage}\bin\ecell3-session-monitor; DestDir: {app}\bin; Flags: ignoreversion; Components: fe/sm;
 Source: {#Stage}\bin\ecell3-session-monitor.cmd; DestDir: {app}\bin; Flags: ignoreversion; Components: fe/sm;
 Source: {#Stage}\bin\ecell3-session-manager; DestDir: {app}\bin; Flags: ignoreversion; Components: fe/cli;
@@ -216,11 +221,22 @@ Source: {#Stage}\include\boost\visit_each.hpp; DestDir: {app}\include\boost; Fla
 Source: {#Stage}\include\boost\weak_ptr.hpp; DestDir: {app}\include\boost; Flags: ignoreversion; Components: dev;
 
 Source: {#Stage}\lib\site-packages\gnomecanvas.pyd; DestDir: {app}\lib\site-packages; Flags: ignoreversion; Components: fe/me;
-Source: {#Stage}\lib\site-packages\E_Cell*.egg-info; DestDir: {app}\lib\site-packages; Flags: recursesubdirs ignoreversion; Components: fe;
+Source: {#Stage}\lib\site-packages\libsbml*.egg-info; DestDir: {app}\lib\site-packages; Flags: recursesubdirs ignoreversion; Components: fe;
+Source: {#Stage}\lib\site-packages\_libsbml.pyd; DestDir: {app}\lib\site-packages; Flags: recursesubdirs ignoreversion; Components: fe;
+Source: {#Stage}\lib\site-packages\libsbml.py?; DestDir: {app}\lib\site-packages; Flags: recursesubdirs ignoreversion; Components: fe;
+Source: {#Stage}\lib\site-packages\libxml2_python*.egg-info; DestDir: {app}\lib\site-packages; Flags: recursesubdirs ignoreversion; Components: fe;
+Source: {#Stage}\lib\site-packages\drv_libxml2.py?; DestDir: {app}\lib\site-packages; Flags: recursesubdirs ignoreversion; Components: fe;
+Source: {#Stage}\lib\site-packages\libxml2.py?; DestDir: {app}\lib\site-packages; Flags: recursesubdirs ignoreversion; Components: fe;
+Source: {#Stage}\lib\site-packages\libxml2mod.pyd; DestDir: {app}\lib\site-packages; Flags: recursesubdirs ignoreversion; Components: fe;
+Source: {#Stage}\lib\site-packages\ply*.egg-info; DestDir: {app}\lib\site-packages; Flags: recursesubdirs ignoreversion; Components: fe;
+Source: {#Stage}\lib\site-packages\ply\*.*; DestDir: {app}\lib\site-packages\ply; Flags: recursesubdirs ignoreversion; Components: fe;
+Source: {#Stage}\lib\site-packages\E_Cell*-{#Version}-*.egg-info; DestDir: {app}\lib\site-packages; Flags: recursesubdirs ignoreversion; Components: fe;
 Source: {#Stage}\lib\site-packages\ecell\*.*; DestDir: {app}\lib\site-packages\ecell; Flags: recursesubdirs ignoreversion; Components: fe;
 Source: {#Stage}\lib\{#PkgDir}\dms\*.*; DestDir: {app}\lib\{#PkgDir}\dms; Flags: recursesubdirs ignoreversion; Components: rt;
+Source: {#Stage}\lib\site-packages\ecell.model_editor*-{#Version}-*.egg-info; DestDir: {app}\lib\site-packages; Flags: recursesubdirs ignoreversion; Components: fe/me;
 Source: {#Stage}\lib\{#PkgDir}\model-editor\*.*; DestDir: {app}\lib\{#PkgDir}\model-editor; Flags: recursesubdirs ignoreversion; Components: fe/me;
 Source: {#Stage}\share\{#PkgDir}\model-editor\*.*; DestDir: {app}\share\{#PkgDir}\model-editor; Flags: recursesubdirs ignoreversion; Components: fe/me;
+Source: {#Stage}\lib\site-packages\ecell.session_monitor*-{#Version}-*.egg-info; DestDir: {app}\lib\site-packages; Flags: recursesubdirs ignoreversion; Components: fe/sm;
 Source: {#Stage}\lib\{#PkgDir}\session-monitor\*.*; DestDir: {app}\lib\{#PkgDir}\session-monitor; Flags: recursesubdirs ignoreversion; Components: fe/sm;
 Source: {#Stage}\share\{#PkgDir}\session-monitor\*.*; DestDir: {app}\share\{#PkgDir}\session-monitor; Flags: recursesubdirs ignoreversion; Components: fe/sm;
 Source: {#Stage}\doc\*.*; DestDir: {app}\doc; Flags: recursesubdirs ignoreversion
