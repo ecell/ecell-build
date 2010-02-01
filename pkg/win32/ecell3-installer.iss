@@ -39,6 +39,8 @@ BackColor=clBlue
 BackColor2=clBlack
 BackColorDirection=lefttoright
 WizardImageBackColor=clWhite
+ArchitecturesAllowed={#ArchitecturesAllowed}
+ArchitecturesInstallIn64BitMode={#ArchitecturesInstallIn64BitMode}
 
 [Tasks]
 Name: desktopicon; Description: Create &desktop icons; GroupDescription: Additional icons:
@@ -314,6 +316,27 @@ var
   NumPyInstalled: Boolean;
   EnvPythonHomeSet: Boolean;
 
+function RegGetRootKey(const RootKey: Integer): Integer;
+begin
+  Result := RootKey
+  if Lowercase(ARCHITECTURE) = 'x64' then begin
+    case RootKey of
+      HKLM: Result := HKLM64;
+      HKCU: Result := HKCU64;
+    end;
+  end;
+end;
+
+function RegGetSubkeyNames_(RootKey: Integer; const SubKeyName: String; var Names: TArrayOfString): Boolean;
+begin
+  Result := RegGetSubkeyNames(RegGetRootKey(RootKey), SubKeyName, Names)
+end;
+
+function RegQueryStringValue_(const RootKey: Integer; const SubKeyName, ValueName: String; var ResultStr: String): Boolean;
+begin
+  Result := RegQueryStringValue(RegGetRootKey(RootKey), SubKeyName, ValueName, ResultStr)
+end;
+
 function GetPythonInstallPath(param: String): String;
 begin
   Result := PythonInstallation.path
@@ -389,11 +412,11 @@ begin
   Result.version := '';
   Result.path := '';
   { Check if Python has been installed, if it meets a minimum version, and if python.exe exists }
-  if RegGetSubkeyNames(HKLM, 'Software\Python\PythonCore', versions) then begin
+  if RegGetSubkeyNames_(HKLM, 'Software\Python\PythonCore', versions) then begin
     for i := 0 to GetArrayLength(versions) - 1 do begin
       if ((not exactVersion) and (CompareVersion(versions[i], PYTHON_VERSION) = 0)) or
          (CompareVersion(versions[i], PYTHON_VERSION) = 0) then begin
-        RegQueryStringValue(HKLM, 'Software\Python\PythonCore\' + versions[i] + '\InstallPath', '', pythonDir)
+        RegQueryStringValue_(HKLM, 'Software\Python\PythonCore\' + versions[i] + '\InstallPath', '', pythonDir)
         if FileExists(AddBackslash(pythonDir) + 'python.exe') and
            FileExists(AddBackslash(pythonDir) + 'pythonw.exe') then begin
           Result.version := versions[i]
@@ -402,11 +425,11 @@ begin
       end;
     end;
   end;
-  if (Result.version = '') and RegGetSubkeyNames(HKCU, 'Software\Python\PythonCore', versions) then begin
+  if (Result.version = '') and RegGetSubkeyNames_(HKCU, 'Software\Python\PythonCore', versions) then begin
     for i := 0 to GetArrayLength(versions) - 1 do begin
       if ((not exactVersion) and (CompareVersion(versions[i], PYTHON_VERSION) = 0)) or
          (CompareVersion(versions[i], PYTHON_VERSION) = 0) then begin
-        RegQueryStringValue(HKCU, 'Software\Python\PythonCore\' + versions[i] + '\InstallPath', '', pythonDir)
+        RegQueryStringValue_(HKCU, 'Software\Python\PythonCore\' + versions[i] + '\InstallPath', '', pythonDir)
         if FileExists(AddBackslash(pythonDir) + 'python.exe') and
            FileExists(AddBackslash(pythonDir) + 'pythonw.exe') then begin
           Result.version := versions[i]
@@ -425,11 +448,11 @@ begin
   Result.version := '';
   Result.path := '';
   { Check if GTK has been installed, if it meets a minimum version, and if libglib-2.0-0.dll exists }
-  if RegQueryStringValue(HKLM, 'Software\GTK\2.0', 'Version', version) then
-    RegQueryStringValue(HKLM, 'Software\GTK\2.0', 'Path', gtkDir)
+  if RegQueryStringValue_(HKLM, 'Software\GTK\2.0', 'Version', version) then
+    RegQueryStringValue_(HKLM, 'Software\GTK\2.0', 'Path', gtkDir)
   else
-    if RegQueryStringValue(HKCU, 'Software\GTK\2.0', 'Version', version) then
-      RegQueryStringValue(HKCU, 'Software\GTK\2.0', 'Path', gtkDir);
+    if RegQueryStringValue_(HKCU, 'Software\GTK\2.0', 'Version', version) then
+      RegQueryStringValue_(HKCU, 'Software\GTK\2.0', 'Path', gtkDir);
 
   if version <> '' then begin
     if CompareVersion(version, GTK_VERSION) >= 0 then begin

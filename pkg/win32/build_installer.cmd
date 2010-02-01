@@ -17,7 +17,14 @@ FOR /F "usebackq" %%A IN ("%TMPOUT%") DO SET ECELL_VERSION_NUMBER=%%A
 FOR /F "usebackq" %%A IN ("%TMPOUT%") DO SET PKGDIR=%%A
 DEL "%TMPOUT%"
 ECHO "%ECELL_STAGING_HOME%\doc\COPYING" 
-iscc /dPlatform=%PLATFORM% /dPythonVersion=%PY_VER% /dNumpyVersion=1.0.1 /dGtkVersion=2.6 /dVersion=%ECELL_VERSION_NUMBER% /dPkgDir=%PKGDIR% /dGeneratedSampleEmlDir="%GENERATED_SAMPLE_EML_DIR%" ecell3-installer.iss
+IF "%PLATFORM%" == "x64" (
+    SET ARCH_ALLOWED=x64
+    SET ARCH64=x64
+) ELSE (
+    SET ARCH_ALLOWED=x86 x64
+    SET ARCH64=
+)
+iscc /dPlatform=%PLATFORM% /dArchitecturesAllowed="%ARCH_ALLOWED%" /dArchitecturesInstallIn64BitMode=%ARCH64% /dPythonVersion=%PY_VER% /dNumpyVersion=1.0.1 /dGtkVersion=2.6 /dVersion=%ECELL_VERSION_NUMBER% /dPkgDir=%PKGDIR% /dGeneratedSampleEmlDir="%GENERATED_SAMPLE_EML_DIR%" ecell3-installer.iss
 
 GOTO EXIT
 
