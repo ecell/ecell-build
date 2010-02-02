@@ -452,10 +452,18 @@ begin
     RegQueryStringValue_(HKLM, 'Software\GTK\2.0', 'Path', gtkDir)
   else
     if RegQueryStringValue_(HKCU, 'Software\GTK\2.0', 'Version', version) then
-      RegQueryStringValue_(HKCU, 'Software\GTK\2.0', 'Path', gtkDir);
+      RegQueryStringValue_(HKCU, 'Software\GTK\2.0', 'Path', gtkDir)
+    else begin
+      gtkDir := FileSearch('libgtk-win32-2.0-0.dll', GetEnv('PATH'));
+      if GetVersionNumbersString(gtkDir, version) then begin
+        gtkDir := ExtractFilePath(RemoveBackslash(ExtractFilePath(gtkDir)));
+        if gtkDir = '' then version := '';
+      end;
+    end; 
 
   if version <> '' then begin
     if CompareVersion(version, GTK_VERSION) >= 0 then begin
+      gtkDir := RemoveBackslash(gtkDir);
       if FileExists(gtkDir + '\bin\libglib-2.0-0.dll') then begin
         Result.version := version;
         Result.path := gtkDir;
