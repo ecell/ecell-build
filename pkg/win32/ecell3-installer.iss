@@ -18,7 +18,7 @@
 [Setup]
 AppName=E-Cell Simulation Environment
 AppVerName=E-Cell Simulation Environment {#Version}
-AppPublisher=Keio University
+AppPublisher=E-Cell Project
 AppPublisherURL=http://www.e-cell.org/
 DefaultDirName={pf}\E-Cell
 DefaultGroupName=E-Cell
@@ -100,6 +100,8 @@ Source: {#Stage}\include\boost\bind\*; DestDir: {app}\include\boost\bind; Flags:
 Source: {#Stage}\include\boost\concept\*; DestDir: {app}\include\boost\concept; Flags: recursesubdirs ignoreversion; Components: dev;
 Source: {#Stage}\include\boost\concept_check\*; DestDir: {app}\include\boost\concept_check; Flags: recursesubdirs ignoreversion; Components: dev;
 Source: {#Stage}\include\boost\config\*; DestDir: {app}\include\boost\config; Flags: recursesubdirs ignoreversion; Components: dev;
+Source: {#Stage}\include\boost\detail\*; DestDir: {app}\include\boost\detail; Flags: recursesubdirs ignoreversion; Components: dev;
+Source: {#Stage}\include\boost\exception\*; DestDir: {app}\include\boost\exception; Flags: recursesubdirs ignoreversion; Components: dev;
 Source: {#Stage}\include\boost\format\*; DestDir: {app}\include\boost\format; Flags: recursesubdirs ignoreversion; Components: dev;
 Source: {#Stage}\include\boost\function\*; DestDir: {app}\include\boost\function; Flags: recursesubdirs ignoreversion; Components: dev;
 Source: {#Stage}\include\boost\fusion\*; DestDir: {app}\include\boost\fusion; Flags: recursesubdirs ignoreversion; Components: dev;
@@ -119,6 +121,7 @@ Source: {#Stage}\include\boost\test\*; DestDir: {app}\include\boost\test; Flags:
 Source: {#Stage}\include\boost\tr1\*; DestDir: {app}\include\boost\tr1; Flags: recursesubdirs ignoreversion; Components: dev;
 Source: {#Stage}\include\boost\tuple\*; DestDir: {app}\include\boost\tuple; Flags: recursesubdirs ignoreversion; Components: dev;
 Source: {#Stage}\include\boost\type_traits\*; DestDir: {app}\include\boost\type_traits; Flags: recursesubdirs ignoreversion; Components: dev;
+Source: {#Stage}\include\boost\typeof\*; DestDir: {app}\include\boost\typeof; Flags: recursesubdirs ignoreversion; Components: dev;
 Source: {#Stage}\include\boost\unordered\*; DestDir: {app}\include\boost\unordered; Flags: recursesubdirs ignoreversion; Components: dev;
 Source: {#Stage}\include\boost\utility\*; DestDir: {app}\include\boost\utility; Flags: recursesubdirs ignoreversion; Components: dev;
 
@@ -134,41 +137,13 @@ Source: {#Stage}\include\boost\compressed_pair.hpp; DestDir: {app}\include\boost
 Source: {#Stage}\include\boost\concept_check.hpp; DestDir: {app}\include\boost; Flags: ignoreversion; Components: dev;
 Source: {#Stage}\include\boost\config.hpp; DestDir: {app}\include\boost; Flags: ignoreversion; Components: dev;
 Source: {#Stage}\include\boost\current_function.hpp; DestDir: {app}\include\boost; Flags: ignoreversion; Components: dev;
-Source: {#Stage}\include\boost\detail\algorithm.hpp; DestDir: {app}\include\boost\detail; Flags: ignoreversion; Components: dev;
-Source: {#Stage}\include\boost\detail\allocator_utilities.hpp; DestDir: {app}\include\boost\detail; Flags: ignoreversion; Components: dev;
-Source: {#Stage}\include\boost\detail\atomic_count.hpp; DestDir: {app}\include\boost\detail; Flags: ignoreversion; Components: dev;
-Source: {#Stage}\include\boost\detail\binary_search.hpp; DestDir: {app}\include\boost\detail; Flags: ignoreversion; Components: dev;
-Source: {#Stage}\include\boost\detail\call_traits.hpp; DestDir: {app}\include\boost\detail; Flags: ignoreversion; Components: dev;
-Source: {#Stage}\include\boost\detail\catch_exceptions.hpp; DestDir: {app}\include\boost\detail; Flags: ignoreversion; Components: dev;
-Source: {#Stage}\include\boost\detail\compressed_pair.hpp; DestDir: {app}\include\boost\detail; Flags: ignoreversion; Components: dev;
-Source: {#Stage}\include\boost\detail\dynamic_bitset.hpp; DestDir: {app}\include\boost\detail; Flags: ignoreversion; Components: dev;
-Source: {#Stage}\include\boost\detail\endian.hpp; DestDir: {app}\include\boost\detail; Flags: ignoreversion; Components: dev;
-Source: {#Stage}\include\boost\detail\indirect_traits.hpp; DestDir: {app}\include\boost\detail; Flags: ignoreversion; Components: dev;
-Source: {#Stage}\include\boost\detail\interlocked.hpp; DestDir: {app}\include\boost\detail; Flags: ignoreversion; Components: dev;
-Source: {#Stage}\include\boost\detail\is_function_ref_tester.hpp; DestDir: {app}\include\boost\detail; Flags: ignoreversion; Components: dev;
-Source: {#Stage}\include\boost\detail\is_incrementable.hpp; DestDir: {app}\include\boost\detail; Flags: ignoreversion; Components: dev;
-Source: {#Stage}\include\boost\detail\is_xxx.hpp; DestDir: {app}\include\boost\detail; Flags: ignoreversion; Components: dev;
-Source: {#Stage}\include\boost\detail\iterator.hpp; DestDir: {app}\include\boost\detail; Flags: ignoreversion; Components: dev;
-Source: {#Stage}\include\boost\detail\lightweight_mutex.hpp; DestDir: {app}\include\boost\detail; Flags: ignoreversion; Components: dev;
-Source: {#Stage}\include\boost\detail\lightweight_test.hpp; DestDir: {app}\include\boost\detail; Flags: ignoreversion; Components: dev;
-Source: {#Stage}\include\boost\detail\limits.hpp; DestDir: {app}\include\boost\detail; Flags: ignoreversion; Components: dev;
-Source: {#Stage}\include\boost\detail\named_template_params.hpp; DestDir: {app}\include\boost\detail; Flags: ignoreversion; Components: dev;
-Source: {#Stage}\include\boost\detail\no_exceptions_support.hpp; DestDir: {app}\include\boost\detail; Flags: ignoreversion; Components: dev;
-Source: {#Stage}\include\boost\detail\none_t.hpp; DestDir: {app}\include\boost\detail; Flags: ignoreversion; Components: dev;
-Source: {#Stage}\include\boost\detail\numeric_traits.hpp; DestDir: {app}\include\boost\detail; Flags: ignoreversion; Components: dev;
-Source: {#Stage}\include\boost\detail\ob_call_traits.hpp; DestDir: {app}\include\boost\detail; Flags: ignoreversion; Components: dev;
-Source: {#Stage}\include\boost\detail\ob_compressed_pair.hpp; DestDir: {app}\include\boost\detail; Flags: ignoreversion; Components: dev;
-Source: {#Stage}\include\boost\detail\quick_allocator.hpp; DestDir: {app}\include\boost\detail; Flags: ignoreversion; Components: dev;
-Source: {#Stage}\include\boost\detail\reference_content.hpp; DestDir: {app}\include\boost\detail; Flags: ignoreversion; Components: dev;
-Source: {#Stage}\include\boost\detail\select_type.hpp; DestDir: {app}\include\boost\detail; Flags: ignoreversion; Components: dev;
-Source: {#Stage}\include\boost\detail\templated_streams.hpp; DestDir: {app}\include\boost\detail; Flags: ignoreversion; Components: dev;
-Source: {#Stage}\include\boost\detail\utf8_codecvt_facet.hpp; DestDir: {app}\include\boost\detail; Flags: ignoreversion; Components: dev;
-Source: {#Stage}\include\boost\detail\workaround.hpp; DestDir: {app}\include\boost\detail; Flags: ignoreversion; Components: dev;
 Source: {#Stage}\include\boost\enable_shared_from_this.hpp; DestDir: {app}\include\boost; Flags: ignoreversion; Components: dev;
 Source: {#Stage}\include\boost\foreach.hpp; DestDir: {app}\include\boost; Flags: ignoreversion; Components: dev;
 Source: {#Stage}\include\boost\functional.hpp; DestDir: {app}\include\boost; Flags: ignoreversion; Components: dev;
 Source: {#Stage}\include\boost\function.hpp; DestDir: {app}\include\boost; Flags: ignoreversion; Components: dev;
+Source: {#Stage}\include\boost\function_equal.hpp; DestDir: {app}\include\boost; Flags: ignoreversion; Components: dev;
 Source: {#Stage}\include\boost\function_output_iterator.hpp; DestDir: {app}\include\boost; Flags: ignoreversion; Components: dev;
+Source: {#Stage}\include\boost\functional.hpp; DestDir: {app}\include\boost; Flags: ignoreversion; Components: dev;
 Source: {#Stage}\include\boost\generator_iterator.hpp; DestDir: {app}\include\boost; Flags: ignoreversion; Components: dev;
 Source: {#Stage}\include\boost\get_pointer.hpp; DestDir: {app}\include\boost; Flags: ignoreversion; Components: dev;
 Source: {#Stage}\include\boost\implicit_cast.hpp; DestDir: {app}\include\boost; Flags: ignoreversion; Components: dev;
@@ -183,14 +158,19 @@ Source: {#Stage}\include\boost\iterator.hpp; DestDir: {app}\include\boost; Flags
 Source: {#Stage}\include\boost\last_value.hpp; DestDir: {app}\include\boost; Flags: ignoreversion; Components: dev;
 Source: {#Stage}\include\boost\lexical_cast.hpp; DestDir: {app}\include\boost; Flags: ignoreversion; Components: dev;
 Source: {#Stage}\include\boost\limits.hpp; DestDir: {app}\include\boost; Flags: ignoreversion; Components: dev;
+Source: {#Stage}\include\boost\make_shared.hpp; DestDir: {app}\include\boost; Flags: ignoreversion; Components: dev;
 Source: {#Stage}\include\boost\math_fwd.hpp; DestDir: {app}\include\boost; Flags: ignoreversion; Components: dev;
 Source: {#Stage}\include\boost\mem_fn.hpp; DestDir: {app}\include\boost; Flags: ignoreversion; Components: dev;
+Source: {#Stage}\include\boost\memory_order.hpp; DestDir: {app}\include\boost; Flags: ignoreversion; Components: dev;
 Source: {#Stage}\include\boost\multi_array.hpp; DestDir: {app}\include\boost; Flags: ignoreversion; Components: dev;
+Source: {#Stage}\include\boost\multi_index_container.hpp; DestDir: {app}\include\boost; Flags: ignoreversion; Components: dev;
+Source: {#Stage}\include\boost\multi_index_container_fwd.hpp; DestDir: {app}\include\boost; Flags: ignoreversion; Components: dev;
 Source: {#Stage}\include\boost\next_prior.hpp; DestDir: {app}\include\boost; Flags: ignoreversion; Components: dev;
+Source: {#Stage}\include\boost\non_type.hpp; DestDir: {app}\include\boost; Flags: ignoreversion; Components: dev;
 Source: {#Stage}\include\boost\noncopyable.hpp; DestDir: {app}\include\boost; Flags: ignoreversion; Components: dev;
 Source: {#Stage}\include\boost\nondet_random.hpp; DestDir: {app}\include\boost; Flags: ignoreversion; Components: dev;
 Source: {#Stage}\include\boost\none.hpp; DestDir: {app}\include\boost; Flags: ignoreversion; Components: dev;
-Source: {#Stage}\include\boost\non_type.hpp; DestDir: {app}\include\boost; Flags: ignoreversion; Components: dev;
+Source: {#Stage}\include\boost\none_t.hpp; DestDir: {app}\include\boost; Flags: ignoreversion; Components: dev;
 Source: {#Stage}\include\boost\operators.hpp; DestDir: {app}\include\boost; Flags: ignoreversion; Components: dev;
 Source: {#Stage}\include\boost\optional.hpp; DestDir: {app}\include\boost; Flags: ignoreversion; Components: dev;
 Source: {#Stage}\include\boost\parameter.hpp; DestDir: {app}\include\boost; Flags: ignoreversion; Components: dev;
@@ -200,16 +180,20 @@ Source: {#Stage}\include\boost\pointer_to_other.hpp; DestDir: {app}\include\boos
 Source: {#Stage}\include\boost\preprocessor.hpp; DestDir: {app}\include\boost; Flags: ignoreversion; Components: dev;
 Source: {#Stage}\include\boost\python.hpp; DestDir: {app}\include\boost; Flags: ignoreversion; Components: dev;
 Source: {#Stage}\include\boost\range.hpp; DestDir: {app}\include\boost; Flags: ignoreversion; Components: dev;
+Source: {#Stage}\include\boost\rational.hpp; DestDir: {app}\include\boost; Flags: ignoreversion; Components: dev;
 Source: {#Stage}\include\boost\ref.hpp; DestDir: {app}\include\boost; Flags: ignoreversion; Components: dev;
 Source: {#Stage}\include\boost\regex_fwd.hpp; DestDir: {app}\include\boost; Flags: ignoreversion; Components: dev;
 Source: {#Stage}\include\boost\regex.h; DestDir: {app}\include\boost; Flags: ignoreversion; Components: dev;
 Source: {#Stage}\include\boost\regex.hpp; DestDir: {app}\include\boost; Flags: ignoreversion; Components: dev;
+Source: {#Stage}\include\boost\scope_exit.hpp; DestDir: {app}\include\boost; Flags: ignoreversion; Components: dev;
 Source: {#Stage}\include\boost\scoped_array.hpp; DestDir: {app}\include\boost; Flags: ignoreversion; Components: dev;
 Source: {#Stage}\include\boost\scoped_ptr.hpp; DestDir: {app}\include\boost; Flags: ignoreversion; Components: dev;
 Source: {#Stage}\include\boost\shared_array.hpp; DestDir: {app}\include\boost; Flags: ignoreversion; Components: dev;
 Source: {#Stage}\include\boost\shared_container_iterator.hpp; DestDir: {app}\include\boost; Flags: ignoreversion; Components: dev;
 Source: {#Stage}\include\boost\shared_ptr.hpp; DestDir: {app}\include\boost; Flags: ignoreversion; Components: dev;
 Source: {#Stage}\include\boost\smart_ptr.hpp; DestDir: {app}\include\boost; Flags: ignoreversion; Components: dev;
+Source: {#Stage}\include\boost\static_assert.hpp; DestDir: {app}\include\boost; Flags: ignoreversion; Components: dev;
+Source: {#Stage}\include\boost\strong_typedef.hpp; DestDir: {app}\include\boost; Flags: ignoreversion; Components: dev;
 Source: {#Stage}\include\boost\swap.hpp; DestDir: {app}\include\boost; Flags: ignoreversion; Components: dev;
 Source: {#Stage}\include\boost\static_assert.hpp; DestDir: {app}\include\boost; Flags: ignoreversion; Components: dev;
 Source: {#Stage}\include\boost\throw_exception.hpp; DestDir: {app}\include\boost; Flags: ignoreversion; Components: dev;
@@ -218,6 +202,8 @@ Source: {#Stage}\include\boost\type_traits.hpp; DestDir: {app}\include\boost; Fl
 Source: {#Stage}\include\boost\unordered_map.hpp; DestDir: {app}\include\boost; Flags: ignoreversion; Components: dev;
 Source: {#Stage}\include\boost\unordered_set.hpp; DestDir: {app}\include\boost; Flags: ignoreversion; Components: dev;
 Source: {#Stage}\include\boost\utility.hpp; DestDir: {app}\include\boost; Flags: ignoreversion; Components: dev;
+Source: {#Stage}\include\boost\variant\*; DestDir: {app}\include\boost\variant; Flags: ignoreversion; Components: dev;
+Source: {#Stage}\include\boost\variant.hpp; DestDir: {app}\include\boost; Flags: ignoreversion; Components: dev;
 Source: {#Stage}\include\boost\version.hpp; DestDir: {app}\include\boost; Flags: ignoreversion; Components: dev;
 Source: {#Stage}\include\boost\visit_each.hpp; DestDir: {app}\include\boost; Flags: ignoreversion; Components: dev;
 Source: {#Stage}\include\boost\weak_ptr.hpp; DestDir: {app}\include\boost; Flags: ignoreversion; Components: dev;
