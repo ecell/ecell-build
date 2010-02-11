@@ -82,6 +82,10 @@ Source: {#Stage}\bin\ecell3-eml2em; DestDir: {app}\bin; Flags: ignoreversion; Co
 Source: {#Stage}\bin\ecell3-eml2em.cmd; DestDir: {app}\bin; Flags: ignoreversion; Components: fe/cli;
 Source: {#Stage}\bin\ecell3-em2eml; DestDir: {app}\bin; Flags: ignoreversion; Components: fe/cli;
 Source: {#Stage}\bin\ecell3-em2eml.cmd; DestDir: {app}\bin; Flags: ignoreversion; Components: fe/cli;
+Source: {#Stage}\bin\ecell3-dmc; DestDir: {app}\bin; Flags: ignoreversion; Components: dev;
+Source: {#Stage}\bin\ecell3-dmc.cmd; DestDir: {app}\bin; Flags: ignoreversion; Components: dev;
+Source: {#Stage}\bin\dmcompile; DestDir: {app}\bin; Flags: ignoreversion; Components: dev;
+Source: {#Stage}\bin\dmcompile.cmd; DestDir: {app}\bin; Flags: ignoreversion; Components: dev;
 
 Source: {#Stage}\include\ltdl.h; DestDir: {app}\include; Flags: ignoreversion; Components: dev;
 Source: {#Stage}\include\{#PkgDir}\*.*; DestDir: {app}\include\{#PkgDir}; Flags: recursesubdirs ignoreversion; Components: dev;
