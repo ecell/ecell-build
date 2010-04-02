@@ -1,8 +1,14 @@
+ecell (3.2.0p2-1) karmic; urgency=low
+
+  * Upstream update.
+
+ -- Moriyoshi Koizumi <mozo@sfc.keio.ac.jp>  Fri, 2 Apr 2010 15:53:42 +0900
+
 ecell (3.2.0p1-1) karmic; urgency=low
 
   * Upstream update.
 
- -- Moriyoshi Koizumi <mozo@sfc.keio.ac.jp>  Fri, 5 Feb 2009 17:15:42 +0900
+ -- Moriyoshi Koizumi <mozo@sfc.keio.ac.jp>  Fri, 5 Feb 2010 17:15:42 +0900
 
 ecell (3.1.107-1) jaunty; urgency=low
 
