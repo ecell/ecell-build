@@ -1,0 +1,30 @@
+diff -ur ecell-3.2.1~/ecell/pyecell/ecell/emparser.py ecell-3.2.1/ecell/pyecell/ecell/emparser.py
+--- ecell-3.2.1~/ecell/pyecell/ecell/emparser.py	2010-01-16 11:23:46.000000000 +0900
++++ ecell-3.2.1/ecell/pyecell/ecell/emparser.py	2010-06-30 01:04:01.000000000 +0900
+@@ -429,8 +429,9 @@
+ def initializePLY(outputdir):
+     lextabmod = LEXTAB.split('.')
+     parsertabmod = PARSERTAB.split('.')
+-    lex.lex( lextab=lextabmod[-1], optimize=1, outputdir=os.path.join( outputdir,*lextabmod[:-1] ) )
+-    yacc.yacc( tabmodule=parsertabmod[-1], outputdir=os.path.join( outputdir, *parsertabmod[:-1] ) )
++    lex.lex( lextab=lextabmod[-1], optimize=1 )
++    os.rename( lextabmod[-1] + ".py", os.path.join( outputdir, *lextabmod ) )
++    yacc.yacc( tabmodule=parsertabmod[-1], optimize=1, outputdir=os.path.join( outputdir, *parsertabmod[:-1] ) )
+ 
+ def convertEm2Eml( anEmFileObject, debug=0 ):
+ 
+diff -ur ecell-3.2.1~/ecell/pyecell/ecell/expressionparser.py ecell-3.2.1/ecell/pyecell/ecell/expressionparser.py
+--- ecell-3.2.1~/ecell/pyecell/ecell/expressionparser.py	2010-01-16 11:23:46.000000000 +0900
++++ ecell-3.2.1/ecell/pyecell/ecell/expressionparser.py	2010-06-30 01:05:38.000000000 +0900
+@@ -315,8 +315,9 @@
+ def initializePLY(outputdir):
+     lextabmod = LEXTAB.split('.')
+     parsertabmod = PARSERTAB.split('.')
+-    lex.lex( lextab=lextabmod[-1], optimize=1, outputdir=os.path.join( outputdir,*lextabmod[:-1] ) )
+-    yacc.yacc( tabmodule=parsertabmod[-1], outputdir=os.path.join( outputdir, *parsertabmod[:-1] ) )
++    lex.lex( lextab=lextabmod[-1], optimize=1 )
++    os.rename( lextabmod[-1] + ".py", os.path.join( outputdir, *lextabmod ) )
++    yacc.yacc( tabmodule=parsertabmod[-1], optimize=1, outputdir=os.path.join( outputdir, *parsertabmod[:-1] ) )
+ 
+ 
+ def isID_Namespace( aVariableID ):

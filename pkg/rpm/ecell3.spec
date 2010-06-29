@@ -1,9 +1,12 @@
+%{!?python_sitelib: %define python_sitelib %(python -c "from distutils.sysconfig import get_python_lib; print get_python_lib()")}
+
 Summary: E-Cell is a generic software package for cellular modeling and simulation.
 Name: ecell3
-Version: 3.1.106
-Release: 2%{?dist}
+Version: 3.2.1
+Release: 1%{?dist}
 URL: http://www.e-cell.org/
-Source: ecell-%{version}.tar.gz
+Source: ecell-%{version}.tar.bz2
+Patch0: ecell-3.2.1-ply-2.3-compat.patch
 License: GPL
 Group: Applications
 Packager: Takeshi Sakurada
@@ -14,10 +17,12 @@ Requires: gsl >= 1.5
 Requires: boost >= 1.32.0
 Requires: libstdc++
 Requires: python >= 2.3
+Requires: python-ply >= 2.3
 Requires: glibc
 BuildRequires: make
 BuildRequires: python-devel
 BuildRequires: pygtk2 >= 2.4
+BuildRequires: python-ply >= 2.3
 BuildRequires: glibc-devel
 BuildRequires: libstdc++-devel
 BuildRequires: gcc-c++
@@ -75,22 +80,9 @@ E-Cell System is an object-oriented software suite for modeling,
 simulation, and analysis of large scale complex systems, particularly focused
 on biological details of cellular behavior.
 
-%package tool-launcher
-Summary: E-Cell Tool Launcher
-Group: Development/Libraries
-Requires: ecell3 = %{version}
-Requires: python >= 2.3
-Requires: pygtk2 >= 2.4
-Requires: gnome-python2-canvas >= 2.4
-
-%description tool-launcher
-E-Cell System is an object-oriented software suite for modeling,
-simulation, and analysis of large scale complex systems, particularly focused
-on biological details of cellular behavior.
-
-
 %prep
 %setup -n ecell-%{version}
+%patch0 -p1
 
 %ifarch i686
 CXXFLAGS="-O2 -mfpmath=sse -msse2 $RPM_OPT_FLAGS" ./configure --prefix=%{_prefix}
@@ -120,6 +112,7 @@ make \
     infodir=%{_infodir} \
     docdir=%{_datadir}/doc/ecell3 \
     install
+rm -rf ${RPM_BUILD_ROOT}/usr/lib/python*
 mv ${RPM_BUILD_ROOT}%{_datadir}/doc/ecell3/users-manual .
 mv ${RPM_BUILD_ROOT}%{_datadir}/doc/ecell3/api .
 mv ${RPM_BUILD_ROOT}%{_datadir}/doc/ecell3/model-editor .
@@ -141,8 +134,11 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_bindir}/ecell3-session-manager
 %{_libdir}/libecs.so.*
 %{_libdir}/libemc.so.*
-%{_libdir}/ecell-3.1/dms
+%{_libdir}/ecell-3.2/dms
 %{_libdir}/python*
+%ifarch x86_64 ppc64 sparc64
+%{python_sitelib}/*
+%endif
 
 %files devel
 %defattr(-,root,root)
@@ -150,8 +146,8 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_bindir}/dmcompile
 %{_bindir}/ecell3-dmc
 %{_includedir}/dmtool
-%{_includedir}/ecell-3.1
-%{_datadir}/ecell-3.1/dms
+%{_includedir}/ecell-3.2
+%{_datadir}/ecell-3.2/dms
 %{_libdir}/libecs.so
 %{_libdir}/libecs.la
 %{_libdir}/libemc.so
@@ -160,23 +156,23 @@ rm -rf ${RPM_BUILD_ROOT}
 %files session-monitor
 %defattr(-,root,root)
 %doc AUTHORS COPYING README
-%{_bindir}/gecell
+%{_sysconfdir}/ecell-3.2/osogo.ini
 %{_bindir}/ecell3-session-monitor
-%{_libdir}/ecell-3.1/session-monitor
+%{_libdir}/ecell-3.2/session-monitor
+%{_datadir}/ecell-3.2/session-monitor
 
 %files model-editor
 %defattr(-,root,root)
 %doc AUTHORS COPYING README model-editor
+%{_sysconfdir}/ecell-3.2/model-editor.ini
 %{_bindir}/ecell3-model-editor
-%{_libdir}/ecell-3.1/model-editor
-
-%files tool-launcher
-%defattr(-,root,root)
-%doc AUTHORS COPYING README
-%{_bindir}/ecell3-toollauncher
-%{_libdir}/ecell-3.1/toollauncher
+%{_libdir}/ecell-3.2/model-editor
+%{_datadir}/ecell-3.2/model-editor
 
 %changelog
+* Wed Jun 30 2010 Moriyoshi Koizumi <mozo@riken.jp>
+- Upstream update.
+
 * Tue Feb 05 2008 Moriyoshi Koizumi <mozo@sfc.keio.ac.jp>
 - Add pygtk2-libglade to ecell3-model-editor dependencies.
 - Add ecell3-session-monitor to ecell3-model-editor dependencies.
