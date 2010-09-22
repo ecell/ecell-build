@@ -20,6 +20,7 @@ Requires: python >= 2.3
 Requires: python-ply >= 2.3
 Requires: glibc
 BuildRequires: make
+BuildRequires: numpy >= 1.0.3
 BuildRequires: python-devel
 BuildRequires: pygtk2 >= 2.4
 BuildRequires: python-ply >= 2.3
@@ -112,12 +113,13 @@ make \
     infodir=%{_infodir} \
     docdir=%{_datadir}/doc/ecell3 \
     install
-rm -rf ${RPM_BUILD_ROOT}/usr/lib/python*
+# rm -rf ${RPM_BUILD_ROOT}/usr/lib/python*
 mv ${RPM_BUILD_ROOT}%{_datadir}/doc/ecell3/users-manual .
 mv ${RPM_BUILD_ROOT}%{_datadir}/doc/ecell3/api .
 mv ${RPM_BUILD_ROOT}%{_datadir}/doc/ecell3/model-editor .
 mv ${RPM_BUILD_ROOT}%{_datadir}/doc/ecell3/samples .
 rm -rf ${RPM_BUILD_ROOT}%{_datadir}/doc/ecell3
+find ${RPM_BUILD_ROOT}%{_libdir} -name "*.out" -a -type f | xargs rm -f
 
 %clean
 rm -rf ${RPM_BUILD_ROOT}
@@ -135,10 +137,13 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_libdir}/libecs.so.*
 %{_libdir}/libemc.so.*
 %{_libdir}/ecell-3.2/dms
-%{_libdir}/python*
-%ifarch x86_64 ppc64 sparc64
-%{python_sitelib}/*
-%endif
+%{_libdir}/python*/site-packages/ecell/*.so
+%{_libdir}/python*/site-packages/ecell/*.py
+%{_libdir}/python*/site-packages/ecell/*.pyc
+%{_libdir}/python*/site-packages/ecell/analysis
+%{_libdir}/python*/site-packages/ecell/session_manager
+%{python_sitelib}/ecell/ui/__init__.py
+%{python_sitelib}/ecell/ui/__init__.pyc
 
 %files devel
 %defattr(-,root,root)
@@ -160,6 +165,7 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_bindir}/ecell3-session-monitor
 %{_libdir}/ecell-3.2/session-monitor
 %{_datadir}/ecell-3.2/session-monitor
+%{python_sitelib}/ecell/ui/osogo
 
 %files model-editor
 %defattr(-,root,root)
@@ -168,6 +174,7 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_bindir}/ecell3-model-editor
 %{_libdir}/ecell-3.2/model-editor
 %{_datadir}/ecell-3.2/model-editor
+%{python_sitelib}/ecell/ui/model_editor
 
 %changelog
 * Wed Jun 30 2010 Moriyoshi Koizumi <mozo@riken.jp>
