@@ -5,7 +5,7 @@ include /usr/share/cdbs/1/rules/simple-patchsys.mk
 include /usr/share/cdbs/1/class/autotools.mk
 
 DEB_CONFIGURE_EXTRA_FLAGS = --docdir=/usr/share/doc/ecell3 \
-	--with-boost-python-libname=boost_python-mt
+	--with-boost-python-libname=boost_python-mt-py27
 
 makebuilddir/ecell3::
 	./autogen.sh	

@@ -1,8 +1,9 @@
 ecell (3.2.3p2-1) precise; urgency=low
 
   * Upstream update.
+  * Update dependencies
 
- -- Naohiro Aota <naota@riken.jp>  Mon, 04 Jun 2012 17:18:43 +0900
+ -- Naohiro Aota <naota@riken.jp>  Mon, 04 Jun 2012 18:39:50 +0900
 
 ecell (3.2.0p2-1) lucid; urgency=low
 
